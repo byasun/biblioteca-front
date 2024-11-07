@@ -1,0 +1,43 @@
+{
+    "name": "biblioteca-comunitaria-frontend",
+    "version": "1.0.0",
+    "description": "Frontend do projeto Biblioteca Comunitária",
+    "main": "src/index.js",
+    "scripts": {
+      "start": "react-scripts start",
+      "build": "react-scripts build",
+      "test": "react-scripts test",
+      "eject": "react-scripts eject"
+    },
+    "dependencies": {
+        "react-scripts": "^5.0.1",
+        "axios": "^1.4.0",
+        "@auth0/auth0-react": "^2.0.0",
+        "formik": "^2.4.2",
+        "moment": "^2.29.4",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "react-redux": "^8.0.5",
+        "react-router-dom": "^6.12.1",
+        "redux": "^4.2.1",
+        "styled-components": "^5.3.11",
+        "yup": "^1.2.0"
+    },
+    "devDependencies": {
+      "eslint": "^8.52.0",
+      "eslint-plugin-react": "^7.32.2"
+    },
+    "browserslist": {
+      "production": [
+        ">0.2%",
+        "not dead",
+        "not op_mini all"
+      ],
+      "development": [
+        "last 1 chrome version",
+        "last 1 firefox version",
+        "last 1 safari version"
+      ]
+    }
+  }
+  
