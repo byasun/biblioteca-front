@@ -22,6 +22,10 @@ jobs:
         with:
           submodules: true
           lfs: false
+          
+      # Limpa o cache do npm antes de instalar dependências
+      - name: Clean NPM Cache
+        run: npm cache clean --force
       
       # Instala as dependências do projeto
       - name: Install Node.js Dependencies
