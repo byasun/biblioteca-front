@@ -4,36 +4,36 @@
     "description": "Frontend do projeto Biblioteca Comunitária",
     "main": "src/index.js",
     "scripts": {
-      "start": "react-scripts start",
-      "build": "react-scripts build",
-      "test": "react-scripts test",
-      "eject": "react-scripts eject"
+        "start": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject"
     },
     "dependencies": {
-        "react-scripts": "^5.0.1",
         "@auth0/auth0-react": "^2.0.0",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
-        "react-router-dom": "^6.12.1"
+        "react-router-dom": "^6.12.1",
+        "react-scripts": "^5.0.1"
     },
     "devDependencies": {
-      "eslint": "^8.52.0",
-      "eslint-plugin-react": "^7.32.2"
+        "eslint": "^8.52.0",
+        "eslint-plugin-react": "^7.32.2"
     },
     "browserslist": {
-      "production": [
-        ">0.2%",
-        "not dead",
-        "not op_mini all"
-      ],
-      "development": [
-        "last 1 chrome version",
-        "last 1 firefox version",
-        "last 1 safari version"
-      ]
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
     },
     "engines": {
-      "node": "20.x"
+        "node": "20.x",
+        "npm": "10.5"
     }
-  }
-  
+}
