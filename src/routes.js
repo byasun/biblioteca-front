@@ -11,6 +11,8 @@ const PrivateRoute = ({ children }) => {
 
   if (isLoading) return <div>Carregando...</div>;
 
+  console.log("Autenticado:", isAuthenticated);
+
   if (!isAuthenticated) {
     loginWithRedirect();
     return <div>Redirecionando para login...</div>;

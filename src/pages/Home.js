@@ -3,9 +3,11 @@ import styled from 'styled-components';
 import Navbar from '../components/Navbar';  // Importa a Navbar que você já criou
 
 const Container = styled.div`
-  padding: 6rem 2rem 2rem;
+  padding: 2rem;
+  margin-top: 4rem; /* Ajuste a margem para a altura da navbar */
   text-align: center;
 `;
+
 
 const Home = () => (
   <div>
