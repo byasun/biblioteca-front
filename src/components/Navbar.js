@@ -6,10 +6,15 @@ import { logout } from '../store/usuarioReducer';
 import { useAuth0 } from '@auth0/auth0-react';
 
 const Nav = styled.nav`
+  position: fixed;  /* Fixando a navbar no topo */
+  top: 0;
+  left: 0;
+  width: 100%;
   background: #333;
   padding: 1rem;
   display: flex;
   justify-content: space-between;
+  z-index: 1000;  /* Garantindo que a navbar esteja acima do conteúdo */
 `;
 
 const NavLink = styled(Link)`

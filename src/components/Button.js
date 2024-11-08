@@ -1,22 +1,58 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { useSelector, useDispatch } from 'react-redux';
+import { useAuth0 } from '@auth0/auth0-react';
+import Button from './Button';  // Importando o botão estilizado
 
-const StyledButton = styled.button`
-  background: #007bff;
+const Nav = styled.nav`
+  position: fixed;  /* Fixando a navbar no topo */
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #333;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  z-index: 1000;
+`;
+
+const NavLink = styled(Link)`
   color: #fff;
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-top: 1rem;
+  margin-right: 1rem;
+  text-decoration: none;
 
   &:hover {
-    background: #0056b3;
+    text-decoration: underline;
   }
 `;
 
-const Button = ({ children, ...props }) => (
-  <StyledButton {...props}>{children}</StyledButton>
-);
+const Navbar = () => {
+  const dispatch = useDispatch();
+  const { isAuthenticated, user } = useSelector((state) => state.user);
+  const { logout: auth0Logout } = useAuth0();
 
-export default Button;
+  const handleLogout = () => {
+    dispatch({ type: 'LOGOUT' });
+    auth0Logout({ returnTo: window.location.origin });
+  };
+
+  return (
+    <Nav>
+      <div>
+        <NavLink to="/">Home</NavLink>
+        {isAuthenticated ? (
+          <>
+            <NavLink to="/dashboard">Dashboard</NavLink>
+            <Button onClick={handleLogout}>Logout</Button> {/* Usando o Button aqui */}
+          </>
+        ) : (
+          <NavLink to="/login">Login</NavLink>
+        )}
+      </div>
+      {isAuthenticated && <span>Bem-vindo, {user.nome}</span>}
+    </Nav>
+  );
+};
+
+export default Navbar;
