@@ -64,10 +64,28 @@ const DropdownMenu = styled.div`
 
 // Estilizando o logo
 const Logo = styled.img`
-  width: 150px; /* Defina o tamanho do logo */
+  width: 150px; 
   height: auto;
   margin-left: 20px;
   margin-top: 5px;
+`;
+
+// Estilizando a barra de pesquisa
+const SearchBar = styled.input`
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  margin-top: 5px; 
+`;
+
+// Estilizando o botão de pesquisa
+const SearchButton = styled.button`
+  background: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+  margin-top: 5px; 
 `;
 
 const Navbar = () => {
@@ -81,15 +99,14 @@ const Navbar = () => {
     <Nav>
       <div className="navbar-left">
         <Link to="/">
-          {/* Usando o styled component Logo */}
           <Logo src="src/components/imagens/NTD.png" alt="Logo" />
         </Link>
       </div>
       <div className="navbar-center">
-        <input type="text" placeholder="Pesquisar..." className="search-bar" />
-        <button className="search-button">
+        <SearchBar type="text" placeholder="Pesquisar..." className="search-bar" />
+        <SearchButton className="search-button">
           <img src="src/components/imagens/lupa.png" alt="Pesquisar" className="button-icon" />
-        </button>
+        </SearchButton>
       </div>
       <div className="navbar-right">
         <MenuButton onClick={toggleMenu}>☰</MenuButton>
