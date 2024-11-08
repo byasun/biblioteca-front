@@ -1,56 +1,105 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { useSelector, useDispatch } from 'react-redux';
-import { logout } from '../store/usuarioReducer';
-import { useAuth0 } from '@auth0/auth0-react';
 
+// Estilizando o nav
 const Nav = styled.nav`
-  position: fixed;  /* Fixando a navbar no topo */
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  background: #333;
-  padding: 1rem;
+  background: #6ab0e3;
+  padding: 15px;
   display: flex;
   justify-content: space-between;
-  z-index: 1000;  /* Garantindo que a navbar esteja acima do conteúdo */
+  z-index: 1000;
 `;
 
+// Estilizando o link do navbar
 const NavLink = styled(Link)`
   color: #fff;
-  margin-right: 1rem;
+  margin-right: 20px;
   text-decoration: none;
+  padding: 10px;
+  margin-left: 50px;
 
   &:hover {
     text-decoration: underline;
   }
 `;
 
-const Navbar = () => {
-  const dispatch = useDispatch();
-  const { isAuthenticated, user } = useSelector((state) => state.user);
-  const { logout: auth0Logout } = useAuth0();
+// Estilizando o botão do menu
+const MenuButton = styled.button`
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 24px;
+  margin-right: 50px;
+`;
 
-  const handleLogout = () => {
-    dispatch({ type: 'LOGOUT' });
-    auth0Logout({ returnTo: window.location.origin });
+// Estilizando o menu dropdown
+const DropdownMenu = styled.div`
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: #6ab0e3;
+  border: 1px solid #fff;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  margin-right: 50px;
+
+  button {
+    background: transparent;
+    border: none;
+    color: #fff;
+    padding: 10px;
+    cursor: pointer;
+    
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+`;
+
+// Estilizando o logo
+const Logo = styled.img`
+  width: 150px; /* Defina o tamanho do logo */
+  height: auto;
+  margin-left: 20px;
+  margin-top: 5px;
+`;
+
+const Navbar = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
   };
 
   return (
     <Nav>
-      <div>
-        <NavLink to="/">Home</NavLink>
-        {isAuthenticated ? (
-          <>
-            <NavLink to="/dashboard">Dashboard</NavLink>
-            <button onClick={handleLogout}>Logout</button>
-          </>
-        ) : (
-          <NavLink to="/login">Login</NavLink>
+      <div className="navbar-left">
+        <Link to="/">
+          {/* Usando o styled component Logo */}
+          <Logo src="src/components/imagens/NTD.png" alt="Logo" />
+        </Link>
+      </div>
+      <div className="navbar-center">
+        <input type="text" placeholder="Pesquisar..." className="search-bar" />
+        <button className="search-button">
+          <img src="src/components/imagens/lupa.png" alt="Pesquisar" className="button-icon" />
+        </button>
+      </div>
+      <div className="navbar-right">
+        <MenuButton onClick={toggleMenu}>☰</MenuButton>
+        {isMenuOpen && (
+          <DropdownMenu>
+            <button type="button" onClick={() => window.location.href = 'src/pages/Login.js'}>Fazer login</button>
+            <button type="button" onClick={() => window.location.href = '/cadastro'}>Criar conta</button>
+          </DropdownMenu>
         )}
       </div>
-      {isAuthenticated && <span>Bem-vindo, {user.nome}</span>}
     </Nav>
   );
 };

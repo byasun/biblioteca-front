@@ -2,18 +2,17 @@ import React from 'react';
 import styled from 'styled-components';
 
 const FooterContainer = styled.footer`
-  padding: 1rem;
-  background-color: #333;
-  color: white;
   text-align: center;
+  padding: 20px;
+  background-color: #6ab0e3;
+  color: #fff;
+  margin-top: auto; /* Faz o footer ir para o final */
 `;
 
-const Footer = () => {
-  return (
-    <FooterContainer>
-      <p>&copy; 2024 Biblioteca Comunitária. Todos os direitos reservados.</p>
-    </FooterContainer>
-  );
-};
+const Footer = () => (
+  <FooterContainer>
+    <p>&copy; 2024 Biblioteca Comunitária</p>
+  </FooterContainer>
+);
 
 export default Footer;
