@@ -25,10 +25,15 @@ jobs:
           node-version: '20.x'
       - name: Update npm to the required version
         run: npm install -g npm@10.5  # Atualiza o npm para a versão correta
+      - name: Cache npm dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
       - name: Install dependencies
-        run: |
-          npm install
-          npm install react-scripts --save  # Instala o react-scripts explicitamente
+        run: npm install  # Instala as dependências listadas no package.json
       - name: Build the app
         run: npm run build  # Executa o build do React
       - name: Build And Deploy
@@ -39,7 +44,6 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }} # Used for Github integrations (i.e. PR comments)
           action: "upload"
           ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
-          # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
           app_location: "/" # App source code path
           api_location: "" # Api source code path - optional
           output_location: "build" # Built app content directory - optional
