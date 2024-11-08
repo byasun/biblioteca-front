@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import styled from 'styled-components';
 import Button from '../components/Button';
+import api from '../api';
 
 const Container = styled.div`
   max-width: 400px;
@@ -14,7 +15,36 @@ const Container = styled.div`
 `;
 
 const Login = () => {
-  const { loginWithRedirect, isAuthenticated, user } = useAuth0();
+  const { loginWithRedirect, isAuthenticated, user, getIdTokenClaims } = useAuth0();
+
+  useEffect(() => {
+    const registrarUsuarioNoBackend = async () => {
+      if (isAuthenticated) {
+        try {
+          // Obtenha o token de autenticação
+          const tokenClaims = await getIdTokenClaims();
+          const token = tokenClaims ? tokenClaims.__raw : null;
+
+          // Envie os dados para o backend com o token
+          await api.post('/usuarios/registrar', 
+            { 
+              nome: user.name, 
+              email: user.email 
+            },
+            {
+              headers: {
+                Authorization: `Bearer ${token}`
+              }
+            }
+          );
+        } catch (error) {
+          console.error('Erro ao registrar usuário no backend:', error);
+        }
+      }
+    };
+
+    registrarUsuarioNoBackend();
+  }, [isAuthenticated, user, getIdTokenClaims]);
 
   if (isAuthenticated) {
     return (
