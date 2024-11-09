@@ -111,6 +111,58 @@ const GlobalStyles = createGlobalStyle`
     }
  }
 
+ /* Estilos para o formulário de login */
+  .login-container {
+    max-width: 400px;
+    margin: 4rem auto;
+    padding: 2rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background: #fff;
+    text-align: center;
+  }
+
+  .login-form-field {
+    margin-bottom: 1rem;
+  }
+
+  .login-input {
+    width: 100%;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+  }
+
+  .login-button {
+    background-color: #6ab0e3;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px;
+    font-size: 16px;
+    margin-top: 10px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: #5093c6;
+    }
+  }
+
+   .estante-item {
+    border: 1px solid #ccc;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+
+  .estante-item p {
+    margin: 0.5rem 0;
+  }
+
  /* Estilos da Navbar */
   .navbar {
     position: fixed;

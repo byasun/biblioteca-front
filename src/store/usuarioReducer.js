@@ -16,5 +16,9 @@ const initialState = {
         return state;
     }
   };
+
+  export const logout = () => ({
+    type: 'LOGOUT'
+  });  
   
   export default userReducer;

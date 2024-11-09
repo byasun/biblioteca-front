@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import api from '../api';
-import styled from 'styled-components';
 import moment from 'moment';
 import Button from '../components/Button';
 import { logout } from '../store/usuarioReducer';
+import styled from 'styled-components';
 
 const Container = styled.div`
   padding: 2rem;
@@ -12,12 +12,6 @@ const Container = styled.div`
 
 const EstanteSection = styled.div`
   margin-top: 2rem;
-`;
-
-const EstanteItem = styled.div`
-  border: 1px solid #ccc;
-  padding: 1rem;
-  margin-bottom: 1rem;
 `;
 
 const UserDashboard = () => {
@@ -49,39 +43,40 @@ const UserDashboard = () => {
 
   return (
     <Container>
-      <h2>Dashboard do Usuário</h2>
-      <p>Nome: {user.nome}</p>
-      <p>Email: {user.email}</p>
+      <h2>Perfil do Usuário</h2>
+      <p><strong>Nome:</strong> {user.nome}</p>
+      <p><strong>Email:</strong> {user.email}</p>
 
       <EstanteSection>
-        <h3>Estante</h3>
+        <h3>Sua Estante</h3>
         {estante.length > 0 ? (
           estante.map(item => (
-            <EstanteItem key={item._id}>
-              <p>Título: {item.titulo}</p>
-              <p>Status: {item.status}</p>
+            <div className="estante-item" key={item._id}>
+              <p><strong>Título:</strong> {item.titulo}</p>
+              <p><strong>Status:</strong> {item.status}</p>
               {item.dataEmprestimo && (
-                <p>Data de Empréstimo: {moment(item.dataEmprestimo).format('DD/MM/YYYY')}</p>
+                <p><strong>Data de Empréstimo:</strong> {moment(item.dataEmprestimo).format('DD/MM/YYYY')}</p>
               )}
               {item.dataDevolucao && (
-                <p>Data de Devolução: {moment(item.dataDevolucao).format('DD/MM/YYYY')}</p>
+                <p><strong>Data de Devolução:</strong> {moment(item.dataDevolucao).format('DD/MM/YYYY')}</p>
               )}
               {item.avaliacao && (
-                <p>Avaliação: {item.avaliacao} estrelas</p>
+                <p><strong>Avaliação:</strong> {item.avaliacao} estrelas</p>
               )}
               {item.comentario && (
-                <p>Comentário: {item.comentario}</p>
+                <p><strong>Comentário:</strong> {item.comentario}</p>
               )}
               {item.quote && (
-                <p>Quote: "{item.quote}"</p>
+                <p><strong>Quote:</strong> "{item.quote}"</p>
               )}
-              <Button onClick={() => handleRemove(item._id)}>Remover</Button>
-            </EstanteItem>
+              <Button className="primary-button" onClick={() => handleRemove(item._id)}>Remover</Button>
+            </div>
           ))
         ) : (
           <p>Nenhum livro na estante.</p>
         )}
       </EstanteSection>
+      <Button className="primary-button" onClick={() => dispatch(logout())}>Logout</Button>
     </Container>
   );
 };
