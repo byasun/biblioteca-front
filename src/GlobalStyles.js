@@ -10,8 +10,6 @@ const GlobalStyles = createGlobalStyle`
   }
 
   body {
-    margin: 0;
-    padding: 0;
     font-family: 'Roboto', Arial, Helvetica, sans-serif;
     background-color: #fff;
   }
@@ -113,7 +111,6 @@ const GlobalStyles = createGlobalStyle`
     }
  }
 
-
  /* Estilos da Navbar */
   .navbar {
     position: fixed;
@@ -123,30 +120,44 @@ const GlobalStyles = createGlobalStyle`
     background: #6ab0e3;
     padding: 15px;
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: center;
     z-index: 1000;
   }
 
-  /* Estilo do conteúdo da página */
-  .page-container {
+  .navbar-left, .navbar-center, .navbar-right {
     display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    padding-top: 80px;
+    align-items: center;
+  }
+
+  .navbar-left {
+    margin-right: auto;
+    margin-left: 15px;
+  }
+
+  .navbar-center {
+    margin: 0 auto;
+  }
+
+  .navbar-right {
+    margin-left: auto;
+    margin-right: 15px;
   }
 
   .navbar-logo {
     width: 150px;
     height: auto;
-    margin-left: 20px;
-    margin-top: 5px;
+  }
+
+  .navbar-button-icon {
+    width: 15px; 
+    height: 15px;
   }
 
   .navbar-search-bar {
     padding: 10px;
     border: none;
     border-radius: 5px;
-    margin-top: 5px;
   }
 
   .navbar-search-button {
@@ -155,7 +166,6 @@ const GlobalStyles = createGlobalStyle`
     border-radius: 5px;
     padding: 10px;
     cursor: pointer;
-    margin-top: 5px;
   }
 
   .navbar-menu-button {
@@ -163,7 +173,6 @@ const GlobalStyles = createGlobalStyle`
     border: none;
     color: #fff;
     font-size: 24px;
-    margin-right: 50px;
   }
 
   .navbar-dropdown-menu {
@@ -175,7 +184,6 @@ const GlobalStyles = createGlobalStyle`
     padding: 10px;
     display: flex;
     flex-direction: column;
-    margin-right: 50px;
   }
 
   .navbar-dropdown-menu button {
@@ -195,7 +203,7 @@ const GlobalStyles = createGlobalStyle`
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    padding-top: 80px;  /* Isso evita que o conteúdo fique atrás da Navbar */
+    padding-top: 80px;
   }
 
   /* Estilo específico para a Home */
@@ -204,7 +212,6 @@ const GlobalStyles = createGlobalStyle`
     padding: 2rem;
     margin-top: 4rem;
     text-align: left;
-    margin: 0px;
   }
 
   /* Responsividade para tablets (telas até 768px) */
@@ -242,25 +249,7 @@ const GlobalStyles = createGlobalStyle`
       font-size: 12px;
       padding: 5px;
     }
-  }
 
-  /* Responsividade específica para a Navbar */
-  @media (max-width: 768px) {
-    .navbar {
-      padding: 10px;
-    }
-
-    .navbar-logo {
-      width: 120px;
-      margin-left: 10px;
-    }
-
-    .navbar-menu-button {
-      margin-right: 20px;
-    }
-  }
-
-  @media (max-width: 480px) {
     .navbar {
       flex-direction: column;
       align-items: center;
@@ -269,28 +258,17 @@ const GlobalStyles = createGlobalStyle`
 
     .navbar-logo {
       width: 100px;
-      margin: 0;
     }
 
-    .navbar-search-bar {
-      width: 100%;
-      margin-top: 5px;
-    }
-
-    .navbar-search-button {
-      width: 100%;
-      margin-top: 5px;
-    }
-
+    .navbar-search-bar,
+    .navbar-search-button,
     .navbar-menu-button {
-      font-size: 20px;
-      margin: 0;
+      width: 100%;
     }
 
     .navbar-dropdown-menu {
       width: 100%;
       position: relative;
-      margin: 0;
     }
   }
 `;

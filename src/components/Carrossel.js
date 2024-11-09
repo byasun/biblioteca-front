@@ -8,7 +8,7 @@ import '../GlobalStyles';  // Certifique-se de que o arquivo GlobalStyles.js est
 const Carousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const images = [
-    fundoImg1,  // Usando as imagens importadas
+    fundoImg1,
     fundoImg2,
     fundoImg3
   ];
