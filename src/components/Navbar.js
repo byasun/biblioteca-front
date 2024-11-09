@@ -15,7 +15,7 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="navbar-left">
         <Link to="/">
-        <img src={logo} alt="Logo" className="navbar-logo" style={{ width: '150px', height: 'auto' }} />
+        <img src={logo} alt="Logo" className="navbar-logo" style={{ width: '40px', height: 'auto' }} />
         </Link>
       </div>
       <div className="navbar-center">

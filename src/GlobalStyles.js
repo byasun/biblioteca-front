@@ -132,6 +132,7 @@ const GlobalStyles = createGlobalStyle`
 
   .navbar-left {
     margin-right: auto;
+    margin-left:15px;
   }
 
   .navbar-center {
@@ -141,10 +142,11 @@ const GlobalStyles = createGlobalStyle`
 
   .navbar-right {
     margin-left: auto;
+    margin-right: 15px;
   }
 
   .navbar-logo {
-    width: 150px;
+    width: 40px;
     height: auto;
   }
 
@@ -157,7 +159,6 @@ const GlobalStyles = createGlobalStyle`
     padding: 10px;
     border: none;
     border-radius: 5px;
-    width: 100%; /* Ajuste para telas menores */
   }
 
   .navbar-search-button {
