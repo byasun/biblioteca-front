@@ -38,7 +38,7 @@ const GlobalStyles = createGlobalStyle`
     transition: background-color 0.3s;
 
     &:hover {
-      background-color: #4a90e2;
+      background-color: #5093c6;
     }
   }
 
@@ -118,10 +118,10 @@ const GlobalStyles = createGlobalStyle`
     left: 0;
     width: 100%;
     background: #6ab0e3;
-    padding: 15px;
+    padding: 15px 20px; /* Mais espaçamento nas laterais */
     display: flex;
+    justify-content: space-between; /* Distribui itens nas extremidades */
     align-items: center;
-    justify-content: center;
     z-index: 1000;
   }
 
@@ -132,16 +132,15 @@ const GlobalStyles = createGlobalStyle`
 
   .navbar-left {
     margin-right: auto;
-    margin-left: 15px;
   }
 
   .navbar-center {
-    margin: 0 auto;
+    flex: 1;
+    justify-content: center; /* Centraliza a barra de pesquisa */
   }
 
   .navbar-right {
     margin-left: auto;
-    margin-right: 15px;
   }
 
   .navbar-logo {
@@ -158,6 +157,7 @@ const GlobalStyles = createGlobalStyle`
     padding: 10px;
     border: none;
     border-radius: 5px;
+    width: 100%; /* Ajuste para telas menores */
   }
 
   .navbar-search-button {
@@ -214,6 +214,61 @@ const GlobalStyles = createGlobalStyle`
     text-align: left;
   }
 
+  /* Estilos para a página de cadastro */
+  .cadastro-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .cadastro-container h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .form-field {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .form-field label {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  .form-field input {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  .error {
+    color: red;
+    font-size: 0.9rem;
+  }
+
+  .primary-button {
+    width: 100%;
+    background-color: #6ab0e3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: #5093c6;
+    }
+  }
+
   /* Responsividade para tablets (telas até 768px) */
   @media (max-width: 768px) {
     body {
@@ -232,6 +287,14 @@ const GlobalStyles = createGlobalStyle`
     input, textarea {
       font-size: 14px;
       padding: 6px;
+    }
+
+    .navbar-search-bar {
+      width: 70%; /* Ajusta o tamanho da barra de pesquisa em telas menores */
+    }
+
+    .navbar-menu-button {
+      font-size: 20px;
     }
   }
 
