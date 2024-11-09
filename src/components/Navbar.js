@@ -18,7 +18,7 @@ const Navbar = () => {
       <div className="navbar-center">
         <input type="text" placeholder="Pesquisar..." className="navbar-search-bar" />
         <button className="navbar-search-button">
-          <img src="src/components/imagens/lupa.png" alt="Pesquisar" className="navbar-button-icon" />
+          <img src="src/components/imagens/lupa.png" alt="lupa" className="navbar-button-icon" />
         </button>
       </div>
       <div className="navbar-right">

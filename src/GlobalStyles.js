@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
@@ -13,7 +13,7 @@ const GlobalStyles = createGlobalStyle`
     margin: 0;
     padding: 0;
     font-family: 'Roboto', Arial, Helvetica, sans-serif;
-    background-color: #f4f4f4;
+    background-color: #fff;
   }
 
   h1, h2, h3 {
@@ -29,7 +29,7 @@ const GlobalStyles = createGlobalStyle`
     }
   }
 
-    .primary-button {
+  .primary-button {
     background-color: #6ab0e3;
     color: #fff;
     border: none;
@@ -74,44 +74,47 @@ const GlobalStyles = createGlobalStyle`
   }
 
   /* Estilos do Carrossel */
-.carousel-container {
-  position: relative;
-  max-width: 100%;
-  overflow: hidden;
-  margin-bottom: 2rem;
-}
-
-.carousel-wrapper {
-  display: flex;
-  transition: transform 0.5s ease-in-out;
-}
-
-.carousel-image {
-  min-width: 100%;
-  height: 300px;
-  background-size: cover;
-  background-position: center;
-}
-
-/* Botões do Carrossel */
-.carousel-button {
-  background-color: #6ab0e3;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 5px;
-  margin: 10px;
-  transition: background-color 0.3s;
-
-  &:hover {
-    background-color: #5093c6;
+  .carousel-container {
+    position: relative;
+    max-width: 100%;
+    overflow: hidden;
+    margin-bottom: 5px;
+    background-color: #f4f4f4;
+    width: 100%;
   }
-}
+
+  .carousel-wrapper {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+  }
+
+  .carousel-image {
+    min-width: 100%;
+    height: 300px;
+    background-size: cover;
+    background-position: center;
+    margin: 5px;
+  }
+
+  /* Botões do Carrossel */
+  .carousel-button {
+    background-color: #6ab0e3;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin: 10px;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: #5093c6;
+    }
+ }
 
 
-   /* Estilos da Navbar */
+ /* Estilos da Navbar */
   .navbar {
     position: fixed;
     top: 0;
@@ -122,6 +125,14 @@ const GlobalStyles = createGlobalStyle`
     display: flex;
     justify-content: space-between;
     z-index: 1000;
+  }
+
+  /* Estilo do conteúdo da página */
+  .page-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding-top: 80px;
   }
 
   .navbar-logo {
@@ -179,19 +190,21 @@ const GlobalStyles = createGlobalStyle`
     }
   }
 
-  /* Estilos para a página Home */
+  /* Estilo do conteúdo da página */
   .page-container {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    padding-top: 80px;  /* Isso evita que o conteúdo fique atrás da Navbar */
   }
 
+  /* Estilo específico para a Home */
   .home-container {
     flex: 1;
     padding: 2rem;
     margin-top: 4rem;
     text-align: left;
-    margin: 50px;
+    margin: 0px;
   }
 
   /* Responsividade para tablets (telas até 768px) */
@@ -208,23 +221,7 @@ const GlobalStyles = createGlobalStyle`
       padding: 1.5rem;
       margin: 20px;
     }
-    
-    input, textarea {
-      font-size: 14px;
-      padding: 6px;
-    }
-  }
 
-  /* Responsividade para tablets (telas até 768px) */
-  @media (max-width: 768px) {
-    body {
-      font-size: 90%;
-    }
-
-    h1 {
-      font-size: 1.8rem;
-    }
-    
     input, textarea {
       font-size: 14px;
       padding: 6px;
@@ -240,7 +237,7 @@ const GlobalStyles = createGlobalStyle`
     h1 {
       font-size: 1.5rem;
     }
-    
+
     input, textarea {
       font-size: 12px;
       padding: 5px;

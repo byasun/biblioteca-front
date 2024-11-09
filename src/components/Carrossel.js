@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
+import fundoImg1 from '../components/imagens/fundo.png';  // Importando a imagem
+import fundoImg2 from '../components/imagens/fundo.png';  // Importando outra imagem
+import fundoImg3 from '../components/imagens/fundo.png';  // E mais imagens se necessário
+
 import '../GlobalStyles';  // Certifique-se de que o arquivo GlobalStyles.js esteja sendo importado corretamente
 
 const Carousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const images = [
-    'src/components/imagens/fundo.png',
-    'src/components/imagens/fundo.png',
-    'src/components/imagens/fundo.png'
+    fundoImg1,  // Usando as imagens importadas
+    fundoImg2,
+    fundoImg3
   ];
 
   const goToPrevious = () => {
