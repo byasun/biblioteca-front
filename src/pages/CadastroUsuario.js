@@ -1,18 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 
 const CadastroUsuario = () => {
-  const [loading, setLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
-
   const formik = useFormik({
     initialValues: {
       nome: "",
       email: "",
+      chave: "", // Campo chave, opcional
       senha: "",
-      confirmacaoSenha: "",
+      senhaConfirmar: "", // Campo de confirmação de senha
     },
     validationSchema: Yup.object({
       nome: Yup.string()
@@ -21,28 +19,27 @@ const CadastroUsuario = () => {
       email: Yup.string()
         .email("Email inválido")
         .required("Email é obrigatório"),
+      chave: Yup.string(), // Chave é opcional
       senha: Yup.string()
         .min(6, "A senha precisa ter no mínimo 6 caracteres")
         .required("Senha é obrigatória"),
-      confirmacaoSenha: Yup.string()
-        .oneOf([Yup.ref("senha"), null], "As senhas não coincidem")
+      senhaConfirmar: Yup.string()
+        .oneOf([Yup.ref('senha'), null], "As senhas não coincidem") // Validação para confirmação de senha
         .required("Confirmação de senha é obrigatória"),
     }),
     onSubmit: (values) => {
-      setLoading(true);
+      // Usando a variável de ambiente REACT_APP_API_URL
+      const apiUrl = process.env.REACT_APP_API_URL;
+
+      // Fazendo a requisição para a API de cadastro
       axios
-        .post("https://sua-api.com/cadastrar", values)
+        .post(`${apiUrl}/cadastrar`, values) // Adicionando o endpoint para cadastro
         .then((response) => {
           console.log("Usuário cadastrado com sucesso!", response);
-          alert("Cadastro realizado com sucesso!");
-          // Redirecionar ou limpar campos
+          // Redirecionar ou mostrar uma mensagem de sucesso
         })
         .catch((error) => {
           console.error("Erro ao cadastrar o usuário:", error);
-          setErrorMessage(error.response ? error.response.data.message : "Erro desconhecido");
-        })
-        .finally(() => {
-          setLoading(false);
         });
     },
   });
@@ -50,7 +47,6 @@ const CadastroUsuario = () => {
   return (
     <div className="cadastro-container">
       <h1>Cadastro de Usuário</h1>
-      {errorMessage && <div className="error">{errorMessage}</div>}
       <form onSubmit={formik.handleSubmit}>
         <div className="form-field">
           <label htmlFor="nome">Nome</label>
@@ -83,6 +79,21 @@ const CadastroUsuario = () => {
         </div>
 
         <div className="form-field">
+          <label htmlFor="chave">Chave (opcional)</label>
+          <input
+            type="text"
+            id="chave"
+            name="chave"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.chave}
+          />
+          {formik.touched.chave && formik.errors.chave ? (
+            <div className="error">{formik.errors.chave}</div>
+          ) : null}
+        </div>
+
+        <div className="form-field">
           <label htmlFor="senha">Senha</label>
           <input
             type="password"
@@ -98,22 +109,22 @@ const CadastroUsuario = () => {
         </div>
 
         <div className="form-field">
-          <label htmlFor="confirmacaoSenha">Confirmar Senha</label>
+          <label htmlFor="senhaConfirmar">Confirmação de Senha</label>
           <input
             type="password"
-            id="confirmacaoSenha"
-            name="confirmacaoSenha"
+            id="senhaConfirmar"
+            name="senhaConfirmar"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            value={formik.values.confirmacaoSenha}
+            value={formik.values.senhaConfirmar}
           />
-          {formik.touched.confirmacaoSenha && formik.errors.confirmacaoSenha ? (
-            <div className="error">{formik.errors.confirmacaoSenha}</div>
+          {formik.touched.senhaConfirmar && formik.errors.senhaConfirmar ? (
+            <div className="error">{formik.errors.senhaConfirmar}</div>
           ) : null}
         </div>
 
-        <button type="submit" className="primary-button" disabled={loading}>
-          {loading ? "Cadastrando..." : "Cadastrar"}
+        <button type="submit" className="primary-button">
+          Cadastrar
         </button>
       </form>
     </div>
