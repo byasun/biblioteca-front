@@ -33,13 +33,16 @@ const CadastroUsuario = () => {
 
       // Fazendo a requisição para a API de cadastro
       axios
-        .post(`${apiUrl}/cadastrar`, values) // Adicionando o endpoint para cadastro
+        .post(`${apiUrl}/registrar`, values) // Usando o endpoint correto
         .then((response) => {
           console.log("Usuário cadastrado com sucesso!", response);
-          // Redirecionar ou mostrar uma mensagem de sucesso
+          alert("Usuário cadastrado com sucesso!"); // Mensagem de sucesso
+          // Redirecionar ou limpar o formulário, se necessário
+          formik.resetForm(); // Limpa o formulário após o cadastro
         })
         .catch((error) => {
           console.error("Erro ao cadastrar o usuário:", error);
+          alert("Erro ao cadastrar o usuário: " + (error.response?.data?.error || error.message)); // Mensagem de erro
         });
     },
   });
@@ -114,7 +117,7 @@ const CadastroUsuario = () => {
             type="password"
             id="senhaConfirmar"
             name="senhaConfirmar"
-            onChange={formik.handleChange}
+            onChange={ formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.senhaConfirmar}
           />
