@@ -31,7 +31,7 @@ const AppRoutes = () => (
       path="/dashboard" 
       element={
         <PrivateRoute>
-          <UserDashboard />
+          <usuarioDashboard />
         </PrivateRoute>
       } 
     />

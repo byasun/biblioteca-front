@@ -7,9 +7,9 @@ const Home = () => (
   <div className="page-container">
     <Navbar />
     <div className="home-container">
-    <Carousel />
       <h1>Bem-vindo à Biblioteca da REGAP</h1>
       <p>Estamos com uma nova missão, a de compartilhar conhecimento e histórias com todos e para isso trazemos as estantes viajantes.</p>
+      <Carousel />
     </div>
     <Footer />
   </div>
