@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { Provider, useDispatch } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Auth0Provider, useAuth0 } from '@auth0/auth0-react';
-import store from './redux/store';
+import store from './redux/store'; // Importa a loja Redux
 import App from './App';
 import './styles/GlobalStyles';
 
@@ -12,7 +12,7 @@ const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
 
 const Auth0ProviderWithRedux = ({ children }) => {
   const dispatch = useDispatch();
-  const { isAuthenticated, user, isLoading } = useAuth0();
+  const { isAuthenticated, user } = useAuth0();
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -34,7 +34,6 @@ root.render(
       <Provider store={store}>
         <Router>
           <Auth0ProviderWithRedux>
-            <GlobalStyles />
             <App />
           </Auth0ProviderWithRedux>
         </Router>

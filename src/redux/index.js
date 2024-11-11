@@ -1,13 +1,8 @@
-import { createStore, combineReducers } from 'redux';
-import userReducer from './usuarioReducer';
+import { combineReducers } from 'redux';
+import userReducer from './reducers/usuarioReducer'; // Importa o reducer do usuário
 
 const rootReducer = combineReducers({
-  user: userReducer,
+  user: userReducer, // Combina o reducer do usuário
 });
 
-const store = createStore(
-  rootReducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
-
-export default store;
+export default rootReducer; // Exporta o rootReducer

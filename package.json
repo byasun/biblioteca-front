@@ -23,6 +23,7 @@
         "react-router-dom": "^6.12.1",
         "react-scripts": "^5.0.1",
         "redux": "^5.0.0",
+        "redux-thunk": "^3.1.0",
         "styled-components": "^5.3.11",
         "yup": "^1.4.0"
     },
