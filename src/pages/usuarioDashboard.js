@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import api from '../api';
 import moment from 'moment';
 import Button from '../components/Button';
-import { logout } from '../store/usuarioReducer';
+import { logout } from '../redux/reducers/usuarioReducer';
 import styled from 'styled-components';
 
 const Container = styled.div`

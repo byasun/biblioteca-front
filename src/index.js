@@ -3,11 +3,10 @@ import ReactDOM from 'react-dom/client';
 import { Provider, useDispatch } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Auth0Provider, useAuth0 } from '@auth0/auth0-react';
-import store from './store';
+import store from './redux/store';
 import App from './App';
-import GlobalStyles from './GlobalStyles';
+import './styles/GlobalStyles';
 
-// Obtenha os valores do .env
 const domain = process.env.REACT_APP_AUTH0_DOMAIN;
 const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
 
