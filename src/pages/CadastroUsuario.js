@@ -29,7 +29,7 @@ const CadastroUsuario = () => {
     }),
     onSubmit: (values) => {
       // Usando a variável de ambiente REACT_APP_API_URL
-      const apiUrl = process.env.REACT_APP_API_URL;
+      const apiUrl = process.env.REACT_APP_API_URL || 'https://biblioteca-comunitaria.azurewebsites.net/api';
 
       // Fazendo a requisição para a API de cadastro
       axios
