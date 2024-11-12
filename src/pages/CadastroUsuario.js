@@ -28,23 +28,25 @@ const CadastroUsuario = () => {
         .required("Confirmação de senha é obrigatória"),
     }),
     onSubmit: (values) => {
+      const { senhaConfirmar, ...dadosUsuario } = values;
+    
       // Usando a variável de ambiente REACT_APP_API_URL
       const apiUrl = process.env.REACT_APP_API_URL || 'https://biblioteca-comunitaria.azurewebsites.net/api';
-
+    
       // Fazendo a requisição para a API de cadastro
       axios
-        .post(`${apiUrl}/usuarios/registrar`, values) // Usando o endpoint correto
+        .post(`${apiUrl}/usuarios/registrar`, dadosUsuario) // Enviando apenas os dados necessários
         .then((response) => {
           console.log("Usuário cadastrado com sucesso!", response);
           alert("Usuário cadastrado com sucesso!"); // Mensagem de sucesso
-          // Redirecionar ou limpar o formulário, se necessário
           formik.resetForm(); // Limpa o formulário após o cadastro
         })
         .catch((error) => {
           console.error("Erro ao cadastrar o usuário:", error);
           alert("Erro ao cadastrar o usuário: " + (error.response?.data?.error || error.message)); // Mensagem de erro
         });
-    },
+    }
+    ,
   });
 
   return (
