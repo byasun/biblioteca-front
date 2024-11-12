@@ -13,12 +13,12 @@ const Login = () => {
         try {
           const tokenClaims = await getIdTokenClaims();
           const token = tokenClaims ? tokenClaims.__raw : null;
-
+  
           await api.post('/usuarios/registrar', 
             { nome: user.name, email: user.email },
             { headers: { Authorization: `Bearer ${token}` } }
           );
-          navigate("/dashboard");  // Redireciona para o Dashboard após o login
+          navigate("/dashboard");  // Redireciona para a página de dashboard
         } catch (error) {
           console.error('Erro ao registrar usuário no backend:', error);
         }
@@ -26,6 +26,7 @@ const Login = () => {
     };
     registrarUsuarioNoBackend();
   }, [isAuthenticated, user, getIdTokenClaims, navigate]);
+  
 
   if (isAuthenticated) {
     return (

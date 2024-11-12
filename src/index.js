@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider, useDispatch } from 'react-redux';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';  // Mantenha o BrowserRouter aqui
 import { Auth0Provider, useAuth0 } from '@auth0/auth0-react';
 import store from './redux/store'; // Importa a loja Redux
 import App from './App';
@@ -32,7 +32,7 @@ root.render(
       redirectUri={window.location.origin}
     >
       <Provider store={store}>
-        <Router>
+        <Router> {/* Coloque o BrowserRouter apenas aqui */}
           <Auth0ProviderWithRedux>
             <App />
           </Auth0ProviderWithRedux>
