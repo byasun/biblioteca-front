@@ -68,14 +68,14 @@ const UserDashboard = () => {
               {item.quote && (
                 <p><strong>Quote:</strong> "{item.quote}"</p>
               )}
-              <Button className="primary-button" onClick={() => handleRemove(item._id)}>Remover</Button>
+              <button className="primary-button" onClick={() => handleRemove(item._id)}>Remover</button>
             </div>
           ))
         ) : (
           <p>Nenhum livro na estante.</p>
         )}
       </EstanteSection>
-      <Button className="primary-button" onClick={() => dispatch(logout())}>Logout</Button>
+      <button className="primary-button" onClick={() => dispatch(logout())}>Logout</button>
     </Container>
   );
 };

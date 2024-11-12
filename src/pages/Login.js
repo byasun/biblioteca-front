@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
+import { useNavigate } from 'react-router-dom';  // Importando o hook useNavigate
 import api from '../api';
 
 const Login = () => {
   const { loginWithRedirect, isAuthenticated, user, getIdTokenClaims } = useAuth0();
+  const navigate = useNavigate();  // Hook para navegar para outra rota
 
   useEffect(() => {
     const registrarUsuarioNoBackend = async () => {
@@ -16,13 +18,14 @@ const Login = () => {
             { nome: user.name, email: user.email },
             { headers: { Authorization: `Bearer ${token}` } }
           );
+          navigate("/dashboard");  // Redireciona para o Dashboard após o login
         } catch (error) {
           console.error('Erro ao registrar usuário no backend:', error);
         }
       }
     };
     registrarUsuarioNoBackend();
-  }, [isAuthenticated, user, getIdTokenClaims]);
+  }, [isAuthenticated, user, getIdTokenClaims, navigate]);
 
   if (isAuthenticated) {
     return (
