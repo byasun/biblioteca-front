@@ -33,7 +33,7 @@ const CadastroUsuario = () => {
 
       // Fazendo a requisição para a API de cadastro
       axios
-        .post(`${apiUrl}/registrar`, values) // Usando o endpoint correto
+        .post(`${apiUrl}/usuarios/registrar`, values) // Usando o endpoint correto
         .then((response) => {
           console.log("Usuário cadastrado com sucesso!", response);
           alert("Usuário cadastrado com sucesso!"); // Mensagem de sucesso
