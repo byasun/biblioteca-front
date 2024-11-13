@@ -42,6 +42,46 @@ const GlobalStyles = createGlobalStyle`
     }
   }
 
+  /* Ajuste para as containers de login e cadastro */
+  .login-container, .cadastro-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    max-width: 500px;
+    margin: 0 auto;
+    margin-top: 5px; /* Ajuste consistente para o espaço abaixo da navbar */
+  }
+
+  .cadastro-container h1, .login-container h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .form-field {
+    width: 100%;
+    margin-bottom: 5px;
+  }
+
+  .form-field label {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  .form-field input {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  .error {
+    color: red;
+    font-size: 0.9rem;
+  }
+
   button {
     cursor: pointer;
   }
@@ -109,61 +149,9 @@ const GlobalStyles = createGlobalStyle`
     &:hover {
       background-color: #5093c6;
     }
- }
-
- /* Estilos para o formulário de login */
-  .login-container {
-    max-width: 400px;
-    margin: 4rem auto;
-    padding: 2rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background: #fff;
-    text-align: center;
   }
 
-  .login-form-field {
-    margin-bottom: 1rem;
-  }
-
-  .login-input {
-    width: 100%;
-    padding: 8px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    font-size: 16px;
-  }
-
-  .login-button {
-    background-color: #6ab0e3;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    padding: 10px;
-    font-size: 16px;
-    margin-top: 10px;
-    cursor: pointer;
-    width: 100%;
-    transition: background-color 0.3s;
-
-    &:hover {
-      background-color: #5093c6;
-    }
-  }
-
-   .estante-item {
-    border: 1px solid #ccc;
-    padding: 1rem;
-    margin-bottom: 1rem;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-  }
-
-  .estante-item p {
-    margin: 0.5rem 0;
-  }
-
- /* Estilos da Navbar */
+  /* Estilos da Navbar */
   .navbar {
     position: fixed;
     top: 0;
@@ -184,7 +172,7 @@ const GlobalStyles = createGlobalStyle`
 
   .navbar-left {
     margin-right: auto;
-    margin-left:15px;
+    margin-left: 15px;
   }
 
   .navbar-center {
@@ -265,61 +253,6 @@ const GlobalStyles = createGlobalStyle`
     padding: 2rem;
     margin-top: 4rem;
     text-align: left;
-  }
-
-  /* Estilos para a página de cadastro */
-  .cadastro-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 2rem;
-    max-width: 500px;
-    margin: 0 auto;
-  }
-
-  .cadastro-container h1 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-  }
-
-  .form-field {
-    width: 100%;
-    margin-bottom: 1rem;
-  }
-
-  .form-field label {
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
-    display: block;
-  }
-
-  .form-field input {
-    width: 100%;
-    padding: 0.8rem;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-
-  .error {
-    color: red;
-    font-size: 0.9rem;
-  }
-
-  .primary-button {
-    width: 100%;
-    background-color: #6ab0e3;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 10px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s;
-
-    &:hover {
-      background-color: #5093c6;
-    }
   }
 
   /* Responsividade para tablets (telas até 768px) */

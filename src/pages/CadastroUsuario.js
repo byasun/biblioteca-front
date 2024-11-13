@@ -45,8 +45,7 @@ const CadastroUsuario = () => {
           console.error("Erro ao cadastrar o usuário:", error);
           alert("Erro ao cadastrar o usuário: " + (error.response?.data?.error || error.message)); // Mensagem de erro
         });
-    }
-    ,
+    },
   });
 
   return (
@@ -119,7 +118,7 @@ const CadastroUsuario = () => {
             type="password"
             id="senhaConfirmar"
             name="senhaConfirmar"
-            onChange={ formik.handleChange}
+            onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.senhaConfirmar}
           />

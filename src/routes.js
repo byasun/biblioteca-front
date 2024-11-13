@@ -7,7 +7,7 @@ import CadastroUsuario from './pages/CadastroUsuario';
 import UserDashboard from './pages/usuarioDashboard';
 
 const PrivateRoute = ({ children }) => {
-  const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
+  const isAuthenticated = useSelector((state) => state.user.isAuthenticated) || !!localStorage.getItem('token');
 
   if (!isAuthenticated) {
     return <Navigate to="/login" />;
