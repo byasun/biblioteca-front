@@ -42,7 +42,7 @@ const GlobalStyles = createGlobalStyle`
     }
   }
 
-  /* Ajuste para as containers de login e cadastro */
+  /* Ajustes para as containers de login e cadastro */
   .login-container, .cadastro-container {
     display: flex;
     flex-direction: column;
@@ -53,25 +53,28 @@ const GlobalStyles = createGlobalStyle`
     margin-top: 5px; /* Ajuste consistente para o espaço abaixo da navbar */
   }
 
-  .cadastro-container h1, .login-container h1 {
+  /* Títulos dos formulários */
+  .login-container h2, .cadastro-container h1 {
     font-size: 2rem;
     margin-bottom: 1rem;
+    text-align: center;
   }
 
+  /* Estilos para os campos do formulário */
   .form-field {
     width: 100%;
-    margin-bottom: 5px;
+    margin-bottom: 15px; /* Espaçamento entre os campos */
   }
 
   .form-field label {
     font-size: 1rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: 5px;
     display: block;
   }
 
   .form-field input {
     width: 100%;
-    padding: 0.8rem;
+    padding: 12px;
     font-size: 1rem;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -80,6 +83,7 @@ const GlobalStyles = createGlobalStyle`
   .error {
     color: red;
     font-size: 0.9rem;
+    margin-top: 5px;
   }
 
   button {

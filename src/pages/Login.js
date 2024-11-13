@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { loginSuccess } from '../redux/actions/usuarioActions';
@@ -7,13 +7,17 @@ import api from '../api';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState(''); // Para exibir mensagens de erro
+  const [errorMessage, setErrorMessage] = useState('');
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  // Limpa a mensagem de erro sempre que o componente for renderizado
+  useEffect(() => {
+    setErrorMessage('');
+  }, [email, password]);
+  
   const handleLogin = async (e) => {
     e.preventDefault();
-    setErrorMessage(''); // Limpar a mensagem de erro antes de cada nova tentativa
     try {
       const response = await api.post('/login', { email, password });
       const { token, user } = response.data;
@@ -27,9 +31,9 @@ const Login = () => {
       // Redireciona para o dashboard
       navigate("/dashboard");
     } catch (error) {
-      console.error('Erro ao fazer login:', error);
+      console.error('Erro ao fazer login:', error.response || error);
       setErrorMessage("Falha no login. Verifique suas credenciais.");
-    }
+    }    
   };
 
   return (
