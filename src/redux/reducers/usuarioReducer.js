@@ -9,16 +9,12 @@ const usuarioReducer = (state = initialState, action) => {
       return {
         ...state,
         isAuthenticated: true,
-        user: action.payload, // Armazena as informações do usuário
+        user: action.payload,
       };
     case 'LOGOUT':
-      return {
-        ...state,
-        isAuthenticated: false,
-        user: null, // Limpa as informações do usuário
-      };
+      return initialState;
     default:
-      return state; // Retorna o estado atual se a ação não for reconhecida
+      return state;
   }
 };
 

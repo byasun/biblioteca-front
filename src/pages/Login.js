@@ -1,58 +1,51 @@
-import React, { useEffect } from 'react';
-import { useAuth0 } from '@auth0/auth0-react';
-import { useNavigate } from 'react-router-dom';  // Importando o hook useNavigate
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { loginSuccess } from '../redux/usuarioActions';
 import api from '../api';
 
 const Login = () => {
-  const { loginWithRedirect, isAuthenticated, user, getIdTokenClaims } = useAuth0();
-  const navigate = useNavigate();  // Hook para navegar para outra rota
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    const registrarUsuarioNoBackend = async () => {
-      if (isAuthenticated) {
-        try {
-          const tokenClaims = await getIdTokenClaims();
-          const token = tokenClaims ? tokenClaims.__raw : null;
-  
-          await api.post('/usuarios/registrar', 
-            { nome: user.name, email: user.email },
-            { headers: { Authorization: `Bearer ${token}` } }
-          );
-          navigate("/dashboard");  // Redireciona para a página de dashboard
-        } catch (error) {
-          console.error('Erro ao registrar usuário no backend:', error);
-        }
-      }
-    };
-    registrarUsuarioNoBackend();
-  }, [isAuthenticated, user, getIdTokenClaims, navigate]);
-  
-
-  if (isAuthenticated) {
-    return (
-      <div className="login-container">
-        <h2>Bem-vindo de volta!</h2>
-        <p>Você já está logado como {user.name}</p>
-      </div>
-    );
-  }
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await api.post('/login', { email, password });
+      const userData = response.data;
+      dispatch(loginSuccess(userData));
+      navigate("/dashboard");
+    } catch (error) {
+      console.error('Erro ao fazer login:', error);
+      alert("Falha no login. Verifique suas credenciais.");
+    }
+  };
 
   return (
     <div className="login-container">
       <h2>Login</h2>
-      <form onSubmit={(e) => {
-        e.preventDefault();
-        loginWithRedirect();
-      }}>
+      <form onSubmit={handleLogin}>
         <div className="login-form-field">
           <label>Email</label>
-          <input className="login-input" type="email" placeholder="Digite seu email" required />
+          <input 
+            type="email" 
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required 
+          />
         </div>
         <div className="login-form-field">
           <label>Senha</label>
-          <input className="login-input" type="password" placeholder="Digite sua senha" required />
+          <input 
+            type="password" 
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required 
+          />
         </div>
-        <button className="login-button" type="submit">Entrar</button>
+        <button type="submit">Entrar</button>
       </form>
     </div>
   );
