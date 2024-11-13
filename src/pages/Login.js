@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { loginSuccess } from '../redux/usuarioActions';
+import { loginSuccess } from '../redux/actions/usuarioActions';
 import api from '../api';
 
 const Login = () => {
