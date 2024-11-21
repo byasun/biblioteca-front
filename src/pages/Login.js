@@ -32,7 +32,9 @@ const Login = () => {
       navigate("/dashboard");
     } catch (error) {
       console.error('Erro ao fazer login:', error.response || error);
-      setErrorMessage("Falha no login. Verifique suas credenciais.");
+
+      // Verificando se a resposta de erro contém uma mensagem específica
+      setErrorMessage(error.response?.data?.message || "Falha no login. Verifique suas credenciais.");
     }    
   };
 
