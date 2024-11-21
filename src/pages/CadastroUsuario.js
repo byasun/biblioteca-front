@@ -31,7 +31,7 @@ const CadastroUsuario = () => {
       const { senhaConfirmar, ...dadosUsuario } = values;
     
       // Usando a variável de ambiente REACT_APP_API_URL
-      const apiUrl = process.env.REACT_APP_API_URL || 'https://biblioteca-comunitaria.azurewebsites.net/api';
+      const apiUrl = process.env.REACT_APP_API_URL || 'https://supreme-rotary-phone-7j4qjwv6gvvfx5j4-8181.app.github.dev';
     
       // Fazendo a requisição para a API de cadastro
       axios
