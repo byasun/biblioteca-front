@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const apiUrl = process.env.REACT_APP_API_URL || 'https://supreme-rotary-phone-7j4qjwv6gvvfx5j4-8181.app.github.dev';
+const apiUrl = process.env.REACT_APP_API_URL;
 
 const api = axios.create({
   baseURL: apiUrl,

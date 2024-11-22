@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 
 const CadastroUsuario = () => {
+  const [loading, setLoading] = useState(false);
+
   const formik = useFormik({
     initialValues: {
       nome: "",
@@ -19,7 +21,8 @@ const CadastroUsuario = () => {
       email: Yup.string()
         .email("Email inválido")
         .required("Email é obrigatório"),
-      chave: Yup.string(), // Chave é opcional
+      chave: Yup.string()
+        .matches(/^[A-Za-z0-9]*$/, "A chave deve conter apenas letras e números"), // Validação opcional
       senha: Yup.string()
         .min(6, "A senha precisa ter no mínimo 6 caracteres")
         .required("Senha é obrigatória"),
@@ -28,22 +31,32 @@ const CadastroUsuario = () => {
         .required("Confirmação de senha é obrigatória"),
     }),
     onSubmit: (values) => {
-      const { senhaConfirmar, ...dadosUsuario } = values;
-    
+      const { senhaConfirmar, ...dadosUsuario } = values; // Remove o campo de confirmação
+
       // Usando a variável de ambiente REACT_APP_API_URL
-      const apiUrl = process.env.REACT_APP_API_URL || 'https://supreme-rotary-phone-7j4qjwv6gvvfx5j4-8181.app.github.dev';
-    
-      // Fazendo a requisição para a API de cadastro
-      axios
-        .post(`${apiUrl}/usuarios/registrar`, dadosUsuario) // Enviando apenas os dados necessários
+      const apiUrl = process.env.REACT_APP_API_URL;
+
+      // Inicia o estado de carregamento
+      setLoading(true);
+
+      axios.post(`${apiUrl}/usuarios/registrar`, dadosUsuario)
         .then((response) => {
-          console.log("Usuário cadastrado com sucesso!", response);
-          alert("Usuário cadastrado com sucesso!"); // Mensagem de sucesso
+          setLoading(false); // Finaliza o estado de carregamento
+          console.log('Resposta da API:', response.data); // Exibe os dados retornados no console
+
+          // Por exemplo, se a API retornar um ID ou uma mensagem de sucesso
+          if (response.data && response.data.id) {
+            alert(`Usuário cadastrado com sucesso! ID do usuário: ${response.data.id}`);
+          } else {
+            alert("Usuário cadastrado com sucesso!");
+          }
+
           formik.resetForm(); // Limpa o formulário após o cadastro
         })
         .catch((error) => {
-          console.error("Erro ao cadastrar o usuário:", error);
-          alert("Erro ao cadastrar o usuário: " + (error.response?.data?.error || error.message)); // Mensagem de erro
+          setLoading(false); // Finaliza o estado de carregamento
+          const errorMessage = error.response?.data?.error || "Erro no servidor. Tente novamente mais tarde.";
+          alert(`Erro ao cadastrar o usuário: ${errorMessage}`);
         });
     },
   });
@@ -127,8 +140,8 @@ const CadastroUsuario = () => {
           ) : null}
         </div>
 
-        <button type="submit" className="primary-button">
-          Cadastrar
+        <button type="submit" className="primary-button" disabled={loading}>
+          {loading ? "Cadastrando..." : "Cadastrar"}
         </button>
       </form>
     </div>
