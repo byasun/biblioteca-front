@@ -18,25 +18,23 @@ const Login = () => {
   
   const handleLogin = async (e) => {
     e.preventDefault();
+  
     try {
-      const response = await api.post('/login', { email, password });
+      const response = await api.post('/usuarios/login', { email, password });
+  
       const { token, user } = response.data;
-
       // Salva o token no localStorage
       localStorage.setItem('token', token);
-
       // Atualiza o estado global do usuário
       dispatch(loginSuccess(user));
-
       // Redireciona para o dashboard
       navigate("/dashboard");
     } catch (error) {
       console.error('Erro ao fazer login:', error.response || error);
-
-      // Verificando se a resposta de erro contém uma mensagem específica
       setErrorMessage(error.response?.data?.message || "Falha no login. Verifique suas credenciais.");
-    }    
+    }
   };
+
 
   return (
     <div className="login-container" style={{ marginTop: '100px' }}>
