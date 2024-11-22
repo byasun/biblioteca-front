@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { loginSuccess } from '../redux/actions/usuarioActions';
-import api from '../api';
+
+import api from '../api';  // Verifique se o api.js já tem axios configurado
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -15,26 +16,29 @@ const Login = () => {
   useEffect(() => {
     setErrorMessage('');
   }, [email, password]);
-  
+
   const handleLogin = async (e) => {
     e.preventDefault();
-  
+
     try {
-      const response = await api.post('/usuarios/login', { email, password });
-  
-      const { token, user } = response.data;
-      // Salva o token no localStorage
-      localStorage.setItem('token', token);
+      // Envia a requisição de login com o Axios
+      const response = await api.post('/usuarios/login', { email, password }, {
+        withCredentials: true,  // Garante que os cookies sejam enviados
+      });
+
+      // O backend deve definir o cookie de sessão automaticamente
+      const { user } = response.data;
+
       // Atualiza o estado global do usuário
       dispatch(loginSuccess(user));
+
       // Redireciona para o dashboard
       navigate("/dashboard");
     } catch (error) {
       console.error('Erro ao fazer login:', error.response || error);
       setErrorMessage(error.response?.data?.message || "Falha no login. Verifique suas credenciais.");
     }
-  };  
-
+  };
 
   return (
     <div className="login-container" style={{ marginTop: '100px' }}>

@@ -1,12 +1,16 @@
 import axios from 'axios';
 
+// Garantir que os cookies sejam enviados por padrão
+axios.defaults.withCredentials = true;
+
+// Definir o baseURL uma vez, pegando da variável de ambiente
 const apiUrl = process.env.REACT_APP_API_URL;
 
 const api = axios.create({
-  baseURL: apiUrl,
+  baseURL: apiUrl,  // Usando a variável de ambiente para definir o backend
 });
 
-// Intercepta cada requisição para adicionar o token, se ele existir
+// Interceptador de requisição para adicionar o token, se ele existir
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('token');
