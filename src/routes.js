@@ -7,9 +7,11 @@ import CadastroUsuario from './pages/CadastroUsuario';
 import UserDashboard from './pages/usuarioDashboard';
 
 const PrivateRoute = ({ children }) => {
-  const isAuthenticated = useSelector((state) => state.user.isAuthenticated) || !!localStorage.getItem('token');
+  // Verificando se o usuário está autenticado, seja pelo Redux ou pelo localStorage
+  const isAuthenticated = useSelector((state) => state.usuario.isAuthenticated) || !!localStorage.getItem('token');
 
   if (!isAuthenticated) {
+    // Redireciona para a página de login se o usuário não estiver autenticado
     return <Navigate to="/login" />;
   }
 
@@ -21,6 +23,8 @@ const AppRoutes = () => (
     <Route path="/" element={<Home />} />
     <Route path="/login" element={<Login />} />
     <Route path="/cadastro" element={<CadastroUsuario />} />
+    
+    {/* Rota protegida */}
     <Route 
       path="/dashboard" 
       element={

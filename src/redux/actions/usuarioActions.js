@@ -28,7 +28,6 @@ export const cadastrarUsuario = (dadosUsuario) => async (dispatch) => {
 };
 
 export const loginSuccess = (user) => {
-  // Salva o token no localStorage para persistência de sessão
   if (user?.token) {
     localStorage.setItem('token', user.token);
   }

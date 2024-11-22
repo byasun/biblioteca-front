@@ -1,6 +1,6 @@
 const initialState = {
-  isAuthenticated: !!localStorage.getItem('token'), // Verifica se o token está presente no localStorage
-  user: null,
+  isAuthenticated: !!localStorage.getItem('token'),
+  user: null, // Inicializa o usuário como null
 };
 
 const usuarioReducer = (state = initialState, action) => {
@@ -12,7 +12,6 @@ const usuarioReducer = (state = initialState, action) => {
         user: action.payload,
       };
     case 'LOGOUT':
-      // Limpa o token do localStorage quando o usuário sair
       localStorage.removeItem('token');
       return initialState;
     default:

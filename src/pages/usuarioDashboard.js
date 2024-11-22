@@ -15,7 +15,7 @@ const EstanteSection = styled.div`
 
 const UserDashboard = () => {
   const dispatch = useDispatch();
-  const { user, isAuthenticated } = useSelector((state) => state.user);
+  const { user, isAuthenticated } = useSelector((state) => state.usuario);
   const [estante, setEstante] = useState([]);
 
   useEffect(() => {
@@ -44,7 +44,6 @@ const UserDashboard = () => {
     <Container>
       <h2>Perfil do Usuário</h2>
       <p><strong>Nome:</strong> {user.nome}</p>
-      <p><strong>Email:</strong> {user.email}</p>
 
       <EstanteSection>
         <h3>Sua Estante</h3>
