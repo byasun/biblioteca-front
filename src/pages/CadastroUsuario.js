@@ -33,39 +33,30 @@ const CadastroUsuario = () => {
         .required("Confirmação de senha é obrigatória"),
     }),
     onSubmit: async (values) => {
-      const { senhaConfirmar, ...dadosUsuario } = values; // Remove o campo de confirmação
+      const { senhaConfirmar, ...dadosUsuario } = values; 
 
-      // Usando a variável de ambiente REACT_APP_API_URL
       const apiUrl = process.env.REACT_APP_API_URL;
 
-      // Inicia o estado de carregamento
       setLoading(true);
 
       try {
-        // Certifique-se de que a URL inclui a barra final corretamente
-        const response = await axios.post(`${apiUrl}/registrar`, dadosUsuario, {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          withCredentials: true, // Inclui cookies, se necessário
-        });
+        const response = await axios.post(`${apiUrl}/usuarios/registrar`, dadosUsuario);
 
-        setLoading(false); // Finaliza o estado de carregamento
+        setLoading(false); 
         console.log("Resposta da API:", response.data);
 
-        // Mensagem de sucesso
+        
         if (response.data && response.data.id) {
           alert(`Usuário cadastrado com sucesso! ID do usuário: ${response.data.id}`);
         } else {
           alert("Usuário cadastrado com sucesso!");
         }
 
-        formik.resetForm(); // Limpa o formulário após o cadastro
+        formik.resetForm(); 
       } catch (error) {
-        setLoading(false); // Finaliza o estado de carregamento
+        setLoading(false); 
         console.error("Erro ao cadastrar o usuário:", error);
 
-        // Mensagem de erro amigável
         const errorMessage =
           error.response?.data?.error || "Erro no servidor. Tente novamente mais tarde.";
         alert(`Erro ao cadastrar o usuário: ${errorMessage}`);

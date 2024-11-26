@@ -3,12 +3,12 @@ import axios from 'axios';
 // Garantir que os cookies sejam enviados por padrão
 axios.defaults.withCredentials = true;
 
-// Definir o baseURL uma vez, pegando da variável de ambiente
-const apiUrl = process.env.REACT_APP_API_URL.replace(/\/$/, ""); // Remove a barra final, se houver
-
+// Definir a URL base adicionando o prefixo '/api', caso necessário
+const apiUrl = process.env.REACT_APP_API_URL;
+const baseURL = `${apiUrl}/api`; // Inclui o prefixo '/api' na URL base
 
 const api = axios.create({
-  baseURL: apiUrl,  // Usando a variável de ambiente para definir o backend
+  baseURL: baseURL,  // Define a URL base incluindo o prefixo '/api'
 });
 
 // Interceptador de requisição para adicionar o token, se ele existir
