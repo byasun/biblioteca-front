@@ -4,7 +4,8 @@ import axios from 'axios';
 axios.defaults.withCredentials = true;
 
 // Definir o baseURL uma vez, pegando da variável de ambiente
-const apiUrl = process.env.REACT_APP_API_URL;
+const apiUrl = process.env.REACT_APP_API_URL.replace(/\/$/, ""); // Remove a barra final, se houver
+
 
 const api = axios.create({
   baseURL: apiUrl,  // Usando a variável de ambiente para definir o backend

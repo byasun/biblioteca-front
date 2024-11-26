@@ -21,16 +21,18 @@ const CadastroUsuario = () => {
       email: Yup.string()
         .email("Email inválido")
         .required("Email é obrigatório"),
-      chave: Yup.string()
-        .matches(/^[A-Za-z0-9]*$/, "A chave deve conter apenas letras e números"), // Validação opcional
+      chave: Yup.string().matches(
+        /^[A-Za-z0-9]*$/,
+        "A chave deve conter apenas letras e números"
+      ), // Validação opcional
       senha: Yup.string()
         .min(6, "A senha precisa ter no mínimo 6 caracteres")
         .required("Senha é obrigatória"),
       senhaConfirmar: Yup.string()
-        .oneOf([Yup.ref('senha'), null], "As senhas não coincidem") // Validação para confirmação de senha
+        .oneOf([Yup.ref("senha"), null], "As senhas não coincidem") // Validação para confirmação de senha
         .required("Confirmação de senha é obrigatória"),
     }),
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
       const { senhaConfirmar, ...dadosUsuario } = values; // Remove o campo de confirmação
 
       // Usando a variável de ambiente REACT_APP_API_URL
@@ -39,25 +41,35 @@ const CadastroUsuario = () => {
       // Inicia o estado de carregamento
       setLoading(true);
 
-      axios.post(`${apiUrl}/usuarios/registrar`, dadosUsuario)
-        .then((response) => {
-          setLoading(false); // Finaliza o estado de carregamento
-          console.log('Resposta da API:', response.data); // Exibe os dados retornados no console
-
-          // Por exemplo, se a API retornar um ID ou uma mensagem de sucesso
-          if (response.data && response.data.id) {
-            alert(`Usuário cadastrado com sucesso! ID do usuário: ${response.data.id}`);
-          } else {
-            alert("Usuário cadastrado com sucesso!");
-          }
-
-          formik.resetForm(); // Limpa o formulário após o cadastro
-        })
-        .catch((error) => {
-          setLoading(false); // Finaliza o estado de carregamento
-          const errorMessage = error.response?.data?.error || "Erro no servidor. Tente novamente mais tarde.";
-          alert(`Erro ao cadastrar o usuário: ${errorMessage}`);
+      try {
+        // Certifique-se de que a URL inclui a barra final corretamente
+        const response = await axios.post(`${apiUrl}/registrar`, dadosUsuario, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true, // Inclui cookies, se necessário
         });
+
+        setLoading(false); // Finaliza o estado de carregamento
+        console.log("Resposta da API:", response.data);
+
+        // Mensagem de sucesso
+        if (response.data && response.data.id) {
+          alert(`Usuário cadastrado com sucesso! ID do usuário: ${response.data.id}`);
+        } else {
+          alert("Usuário cadastrado com sucesso!");
+        }
+
+        formik.resetForm(); // Limpa o formulário após o cadastro
+      } catch (error) {
+        setLoading(false); // Finaliza o estado de carregamento
+        console.error("Erro ao cadastrar o usuário:", error);
+
+        // Mensagem de erro amigável
+        const errorMessage =
+          error.response?.data?.error || "Erro no servidor. Tente novamente mais tarde.";
+        alert(`Erro ao cadastrar o usuário: ${errorMessage}`);
+      }
     },
   });
 
@@ -149,3 +161,4 @@ const CadastroUsuario = () => {
 };
 
 export default CadastroUsuario;
+
