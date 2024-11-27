@@ -22,7 +22,11 @@ export const cadastrarUsuario = (dadosUsuario) => async (dispatch) => {
     return response.data; // Retorna o usuário criado, caso necessário
   } catch (error) {
     console.error('Erro ao cadastrar o usuário:', error.response || error.message);
-    dispatch(cadastroError(error.response?.data || 'Erro desconhecido'));
+    dispatch(cadastroError({
+      message: error.response?.data?.message || 'Erro desconhecido',
+      status: error.response?.status || 500,
+    }));
+    
     throw error; // Permite tratar o erro no componente
   }
 };

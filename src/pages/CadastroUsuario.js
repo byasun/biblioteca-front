@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
+import api from "../api.js";
 
 const CadastroUsuario = () => {
   const [loading, setLoading] = useState(false);
@@ -40,7 +41,7 @@ const CadastroUsuario = () => {
       setLoading(true);
 
       try {
-        const response = await axios.post(`${apiUrl}/usuarios/registrar`, dadosUsuario);
+        const response = await api.post('/usuarios/cadastrar', dadosUsuario)
 
         setLoading(false); 
         console.log("Resposta da API:", response.data);
