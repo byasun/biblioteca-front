@@ -1,1 +1,10 @@
-{}
+{
+  "routes": [
+    {
+      "route": "https://biblioteca-comunitaria.azurewebsites.net/api/usuarios/cadastrar",
+      "methods": [
+        "post"
+      ]
+    }
+  ]
+}
