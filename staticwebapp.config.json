@@ -1,0 +1,10 @@
+{
+  "routes": [
+    {
+      "route": "/usuarios/registrar",
+      "methods": [
+        "post"
+      ]
+    }
+  ]
+}
