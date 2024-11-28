@@ -23,6 +23,12 @@
       "methods": [
         "put"
       ]
+    },
+    {
+      "route": "/usuarios/:email",
+      "methods": [
+        "delete"
+      ]
     }
   ]
 }
