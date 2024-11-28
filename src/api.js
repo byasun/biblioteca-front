@@ -4,6 +4,7 @@ import axios from 'axios';
 axios.defaults.withCredentials = true;
 
 const apiUrl = process.env.REACT_APP_API_URL;
+const baseURL = `${apiUrl}/api`;
 
 const api = axios.create({
   baseURL: baseURL, // Define a URL base incluindo o prefixo '/api'
