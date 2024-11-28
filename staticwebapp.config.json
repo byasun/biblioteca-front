@@ -5,6 +5,12 @@
       "methods": [
         "post"
       ]
+    },
+    {
+      "route": "/usuarios/login",
+      "methods": [
+        "post"
+      ]
     }
   ]
 }
