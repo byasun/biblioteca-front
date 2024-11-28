@@ -17,6 +17,12 @@
       "methods": [
         "get"
       ]
+    },
+    {
+      "route": "/usuarios/:email",
+      "methods": [
+        "put"
+      ]
     }
   ]
 }
