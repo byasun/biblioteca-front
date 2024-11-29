@@ -3,6 +3,15 @@ import { createGlobalStyle } from "styled-components";
 const GlobalStyles = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
 
+  :root {
+    --primary-color: #6ab0e3;
+    --secondary-color: #5093c6;
+    --background-color: #fff;
+    --text-color: #333;
+    --error-color: red;
+    --font-family: 'Roboto', Arial, Helvetica, sans-serif;
+  }
+
   * {
     margin: 0;
     padding: 0;
@@ -10,80 +19,24 @@ const GlobalStyles = createGlobalStyle`
   }
 
   body {
-    font-family: 'Roboto', Arial, Helvetica, sans-serif;
-    background-color: #fff;
+    font-family: var(--font-family);
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    padding-top: 80px; /* Espaço para a navbar fixada */
+    padding-bottom: 60px; /* Espaço para o footer fixado */
   }
 
   h1, h2, h3 {
-    color: #333;
+    color: var(--text-color);
   }
 
   a {
     text-decoration: none;
-    color: #6ab0e3;
-    
+    color: var(--primary-color);
     &:hover {
-      color: #4a90e2;
+      color: var(--secondary-color);
     }
-  }
-
-  .primary-button {
-    background-color: #6ab0e3;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s;
-
-    &:hover {
-      background-color: #5093c6;
-    }
-  }
-
-  /* Ajustes para as containers de login e cadastro */
-  .login-container, .cadastro-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 2rem;
-    max-width: 500px;
-    margin: 0 auto;
-    margin-top: 5px; /* Ajuste consistente para o espaço abaixo da navbar */
-  }
-
-  /* Títulos dos formulários */
-  .login-container h2, .cadastro-container h1 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    text-align: center;
-  }
-
-  /* Estilos para os campos do formulário */
-  .form-field {
-    width: 100%;
-    margin-bottom: 15px; /* Espaçamento entre os campos */
-  }
-
-  .form-field label {
-    font-size: 1rem;
-    margin-bottom: 5px;
-    display: block;
-  }
-
-  .form-field input {
-    width: 100%;
-    padding: 12px;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-
-  .error {
-    color: red;
-    font-size: 0.9rem;
-    margin-top: 5px;
   }
 
   button {
@@ -95,9 +48,9 @@ const GlobalStyles = createGlobalStyle`
     padding: 8px;
     font-size: 16px;
     border-radius: 4px;
-    
+    width: 100%;
     &:focus {
-      border-color: #6ab0e3;
+      border-color: var(--primary-color);
       outline: none;
     }
   }
@@ -107,12 +60,88 @@ const GlobalStyles = createGlobalStyle`
   }
 
   ::-webkit-scrollbar-thumb {
-    background-color: #6ab0e3;
+    background-color: var(--primary-color);
     border-radius: 4px;
   }
 
   ::-webkit-scrollbar-track {
     background-color: #f4f4f4;
+  }
+
+  /* Estilos para os campos de entrada */
+  .form-field {
+    margin-bottom: 15px;
+  }
+
+  .form-field label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  .form-field input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    color: #333;
+  }
+
+  .form-field input:focus {
+    border-color: var(--primary-color);
+    outline: none;
+  }
+
+  /* Botão principal */
+  .primary-button {
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    transition: background-color 0.3s ease;
+  }
+
+  .primary-button:hover {
+    background-color: var(--secondary-color);
+  }
+
+  .primary-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+
+  /* Estilos Globais para Formulários */
+  .form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .error {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+  }
+
+  .login-container, .cadastro-container {
+    max-width: 500px;
+    margin: 50px auto;
+  }
+
+  h1, h2 {
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
   }
 
   /* Estilos do Carrossel */
@@ -138,33 +167,37 @@ const GlobalStyles = createGlobalStyle`
     margin: 5px;
   }
 
-  /* Botões do Carrossel */
   .carousel-button {
-    background-color: #6ab0e3;
-    color: white;
+    background-color: var(--primary-color);
+    color: #fff;
     border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
     border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
     margin: 10px;
     transition: background-color 0.3s;
-
-    &:hover {
-      background-color: #5093c6;
-    }
   }
 
-  /* Estilos da Navbar */
+  .carousel-button:hover {
+    background-color: var(--secondary-color);
+  }
+
+  .carousel-button:focus {
+    outline: 2px solid var(--secondary-color);
+    outline-offset: 2px;
+  }
+
+  /* Navbar */
   .navbar {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    background: #6ab0e3;
-    padding: 15px 20px; /* Mais espaçamento nas laterais */
+    background: var(--primary-color);
+    padding: 15px 20px;
     display: flex;
-    justify-content: space-between; /* Distribui itens nas extremidades */
+    justify-content: space-between;
     align-items: center;
     z-index: 1000;
   }
@@ -181,7 +214,7 @@ const GlobalStyles = createGlobalStyle`
 
   .navbar-center {
     flex: 1;
-    justify-content: center; /* Centraliza a barra de pesquisa */
+    justify-content: center;
   }
 
   .navbar-right {
@@ -194,134 +227,173 @@ const GlobalStyles = createGlobalStyle`
     height: auto;
   }
 
-  .navbar-button-icon {
-    width: 15px; 
-    height: 15px;
-  }
-
   .navbar-search-bar {
     padding: 10px;
     border: none;
     border-radius: 5px;
+    width: 300px;
   }
 
   .navbar-search-button {
-    background: #fff;
+    background: none;
     border: none;
-    border-radius: 5px;
-    padding: 10px;
+    margin-left: 10px;
     cursor: pointer;
   }
 
-  .navbar-menu-button {
-    background: transparent;
-    border: none;
-    color: #fff;
-    font-size: 24px;
+  .navbar-button-icon {
+    width: 20px;
+    height: 20px;
   }
 
+  /* Estilos do Dropdown do Menu */
   .navbar-dropdown-menu {
     position: absolute;
-    top: 100%;
-    right: 0;
-    background: #6ab0e3;
-    border: 1px solid #fff;
+    top: 60px; /* Abaixo da navbar */
+    right: 20px; /* Alinha o menu com o botão de menu */
+    background-color: var(--primary-color);
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     padding: 10px;
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
+    z-index: 999;
+    visibility: hidden; /* Inicialmente escondido */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .navbar-dropdown-menu.show {
+    visibility: visible;
+    opacity: 1;
   }
 
   .navbar-dropdown-menu button {
-    background: transparent;
+    background: none;
     border: none;
-    color: #fff;
     padding: 10px;
+    color: white;
+    text-align: left;
+    width: 100%;
+    font-size: 16px;
     cursor: pointer;
-    
+    transition: background-color 0.2s;
+  }
+
+  .navbar-dropdown-menu button:hover {
+    background-color: var(--secondary-color);
+  }
+
+  .navbar-menu-button {
+    background: none;
+    border: none;
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+    padding: 0;
+    margin-left: 15px;
+  }
+
+  /* Estilos do Footer (fixo no final da tela) */
+  footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    background-color: var(--primary-color);
+    color: #fff;
+    z-index: 1000; /* Garante que o footer fique sobre outros elementos */
+  }
+
+  footer p {
+    margin: 0;
+  }
+
+  /* Página de Erro 404 */
+  .error-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+  }
+
+  .error-page h1 {
+    font-size: 4rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+  }
+
+  .error-page p {
+    font-size: 1.5rem;
+    color: var(--text-color);
+    margin-bottom: 2rem;
+  }
+
+  .error-page .error-button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
     &:hover {
-      text-decoration: underline;
+      background-color: var(--secondary-color);
+    }
+    &:focus {
+      outline: 2px solid var(--secondary-color);
+      outline-offset: 2px;
     }
   }
 
-  /* Estilo do conteúdo da página */
-  .page-container {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    padding-top: 80px;
-  }
-
-  /* Estilo específico para a Home */
-  .home-container {
-    flex: 1;
-    padding: 2rem;
-    margin-top: 4rem;
-    text-align: left;
-  }
-
-  /* Responsividade para tablets (telas até 768px) */
+  /* Responsividade */
   @media (max-width: 768px) {
     body {
       font-size: 90%;
     }
 
-    h1 {
-      font-size: 1.8rem;
+    .navbar {
+      flex-direction: column;
+      align-items: center;
+      padding: 10px;
     }
 
-    .home-container {
-      padding: 1.5rem;
-      margin: 20px;
+    footer {
+      padding: 15px;
     }
 
-    input, textarea {
-      font-size: 14px;
-      padding: 6px;
+    .error-page h1 {
+      font-size: 3rem;
     }
 
-    .navbar-search-bar {
-      width: 70%; /* Ajusta o tamanho da barra de pesquisa em telas menores */
-    }
-
-    .navbar-menu-button {
-      font-size: 20px;
+    .error-page p {
+      font-size: 1.2rem;
     }
   }
 
-  /* Responsividade para smartphones (telas até 480px) */
   @media (max-width: 480px) {
     body {
       font-size: 80%;
     }
 
-    h1 {
-      font-size: 1.5rem;
-    }
-
-    input, textarea {
-      font-size: 12px;
-      padding: 5px;
-    }
-
-    .navbar {
-      flex-direction: column;
-      align-items: center;
-      padding: 8px;
-    }
-
-    .navbar-logo {
-      width: 100px;
-    }
-
     .navbar-search-bar,
-    .navbar-search-button,
-    .navbar-menu-button {
+    .navbar-search-button {
       width: 100%;
     }
 
-    .navbar-dropdown-menu {
-      width: 100%;
-      position: relative;
+    .error-page h1 {
+      font-size: 2.5rem;
+    }
+
+    .error-page p {
+      font-size: 1rem;
     }
   }
 `;

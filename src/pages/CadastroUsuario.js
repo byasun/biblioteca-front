@@ -11,9 +11,9 @@ const CadastroUsuario = () => {
     initialValues: {
       nome: "",
       email: "",
-      chave: "", // Campo chave, opcional
+      chave: "", 
       senha: "",
-      senhaConfirmar: "", // Campo de confirmação de senha
+      senhaConfirmar: "", 
     },
     validationSchema: Yup.object({
       nome: Yup.string()
@@ -25,12 +25,12 @@ const CadastroUsuario = () => {
       chave: Yup.string().matches(
         /^[A-Za-z0-9]*$/,
         "A chave deve conter apenas letras e números"
-      ), // Validação opcional
+      ),
       senha: Yup.string()
         .min(6, "A senha precisa ter no mínimo 6 caracteres")
         .required("Senha é obrigatória"),
       senhaConfirmar: Yup.string()
-        .oneOf([Yup.ref("senha"), null], "As senhas não coincidem") // Validação para confirmação de senha
+        .oneOf([Yup.ref("senha"), null], "As senhas não coincidem")
         .required("Confirmação de senha é obrigatória"),
     }),
     onSubmit: async (values) => {
@@ -46,7 +46,6 @@ const CadastroUsuario = () => {
         setLoading(false); 
         console.log("Resposta da API:", response.data);
 
-        
         if (response.data && response.data.id) {
           alert(`Usuário cadastrado com sucesso! ID do usuário: ${response.data.id}`);
         } else {
@@ -68,7 +67,7 @@ const CadastroUsuario = () => {
   return (
     <div className="cadastro-container">
       <h1>Cadastro de Usuário</h1>
-      <form onSubmit={formik.handleSubmit}>
+      <form onSubmit={formik.handleSubmit} className="form-container">
         <div className="form-field">
           <label htmlFor="nome">Nome</label>
           <input
@@ -153,4 +152,3 @@ const CadastroUsuario = () => {
 };
 
 export default CadastroUsuario;
-

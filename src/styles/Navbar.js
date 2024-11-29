@@ -15,24 +15,30 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="navbar-left">
         <Link to="/">
-        <img src={logo} alt="Logo" className="navbar-logo" style={{ width: '40px', height: 'auto' }} />
+          <img src={logo} alt="Logo" className="navbar-logo" />
         </Link>
       </div>
       <div className="navbar-center">
         <input type="text" placeholder="Pesquisar..." className="navbar-search-bar" />
         <button className="navbar-search-button">
-          <img src={lupa} alt="lupa" className="navbar-button-icon" />
+          <img src={lupa} alt="Lupa" className="navbar-button-icon" />
         </button>
       </div>
       <div className="navbar-right">
-        <button className="navbar-menu-button" onClick={toggleMenu}>☰</button>
-        {isMenuOpen && (
-          <div className="navbar-dropdown-menu">
-            <button className="primary-button" type="button" onClick={() => navigate('/login')}>Fazer login</button>
-            <button className="primary-button" type="button" onClick={() => navigate('/cadastro')}>Criar conta</button>
-            <button className="primary-button" type="button" onClick={() => navigate('/sobre')}>Saiba Mais</button>
-          </div>
-        )}
+        <button className="navbar-menu-button" onClick={toggleMenu}>
+          ☰
+        </button>
+        <div className={`navbar-dropdown-menu ${isMenuOpen ? 'show' : ''}`}>
+          <button className="primary-button" type="button" onClick={() => navigate('/login')}>
+            Fazer login
+          </button>
+          <button className="primary-button" type="button" onClick={() => navigate('/cadastro')}>
+            Criar conta
+          </button>
+          <button className="primary-button" type="button" onClick={() => navigate('/sobre')}>
+            Saiba Mais
+          </button>
+        </div>
       </div>
     </nav>
   );

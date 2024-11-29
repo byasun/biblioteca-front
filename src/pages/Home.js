@@ -1,6 +1,6 @@
 import React from 'react';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
+import Navbar from '../styles/Navbar';
+import Footer from '../styles/Footer';
 import Carousel from '../components/Carrossel';
 
 const Home = () => (
