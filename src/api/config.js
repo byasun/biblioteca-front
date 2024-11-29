@@ -1,0 +1,1 @@
+export const apiUrl = 'https://biblioteca-comunitaria.azurewebsites.net/api';
