@@ -5,7 +5,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import CadastroUsuario from './pages/CadastroUsuario';
 import UserDashboard from './pages/usuarioDashboard';
-import PrivateRoute from './components/common/PrivateRoute';
+import PrivateRoute from './components/auth/PrivateRoute';
 import { ROUTES } from './routes/paths';
 import Error404 from './pages/Error404';
 

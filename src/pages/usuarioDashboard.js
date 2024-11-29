@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import api from '../api';
 import moment from 'moment';
-import { logout } from '../redux/actions/usuarioActions';
+import { logout } from '../redux/usuarios/usuarioActions';
 import styled from 'styled-components';
 
 const Container = styled.div`

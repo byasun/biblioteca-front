@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import logo from '../components/imagens/NTD.png';
-import lupa from '../components/imagens/lupa.png';
+import logo from '../../components/imagens/NTD.png';
+import lupa from '../../components/imagens/lupa.png';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

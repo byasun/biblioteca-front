@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { loginSuccess } from '../redux/actions/usuarioActions';
-import InputField from '../components/InputFields';
-import ErrorMessage from '../components/ErrorMessage';
-import PrimaryButton from '../components/PrimaryButton';
+import { loginSuccess } from '../redux/usuarios/usuarioActions';
+import InputField from '../components/ui/inputs/InputFields';
+import ErrorMessage from '../components/common/ErrorMessage';
+import PrimaryButton from '../components/ui/buttons/PrimaryButton';
 
 import api from '../api';  // Verifique se o api.js já tem axios configurado
 

@@ -1,7 +1,7 @@
 import React from 'react';
-import Navbar from '../styles/Navbar';
-import Footer from '../styles/Footer';
-import Carousel from '../components/Carrossel';
+import Navbar from '../styles/layout/Navbar';
+import Footer from '../styles/layout/Footer';
+import Carousel from '../components/common/Carrossel';
 
 const Home = () => (
   <div className="page-container">

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import GlobalStyles from './styles/GlobalStyles';
-import Navbar from './styles/Navbar';
+import GlobalStyles from './styles/global/GlobalStyles';
+import Navbar from './styles/layout/Navbar';
 import AppRoutes from './routes';
 import store from './redux/store';
 
