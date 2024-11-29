@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import { thunk } from 'redux-thunk'; // Middleware para ações assíncronas
-import rootReducer from './reducers/rootReducers'; // Importa o rootReducer do arquivo index.js
+import rootReducer from './rootReducer'; // Importa o rootReducer do arquivo index.js
 
 // Configuração do Redux DevTools
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

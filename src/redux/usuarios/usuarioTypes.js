@@ -1,0 +1,3 @@
+export const GET_USUARIO = 'GET_USUARIO';
+export const UPDATE_USUARIO = 'UPDATE_USUARIO';
+export const REGISTER_USUARIO = 'REGISTER_USUARIO';

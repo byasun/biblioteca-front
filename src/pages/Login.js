@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { loginSuccess } from '../redux/actions/usuarioActions';
+import { loginSuccess } from '../redux/usuarios/usuarioActions';
+import InputField from '../components/ui/inputs/InputFields';
+import ErrorMessage from '../components/common/ErrorMessage';
+import PrimaryButton from '../components/ui/buttons/PrimaryButton';
 
 import api from '../api';  // Verifique se o api.js já tem axios configurado
 
@@ -12,7 +15,6 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  // Limpa a mensagem de erro sempre que o componente for renderizado
   useEffect(() => {
     setErrorMessage('');
   }, [email, password]);
@@ -20,50 +22,40 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
 
+    if (!email || !password) {
+      setErrorMessage('Por favor, preencha todos os campos.');
+      return;
+    }
+
     try {
-      // Envia a requisição de login com o Axios
-      const response = await api.post('/usuarios/login', { email, password }, {
-        withCredentials: true,  // Garante que os cookies sejam enviados
-      });
-
-      // O backend deve definir o cookie de sessão automaticamente
+      const response = await api.post('/usuarios/login', { email, password });
       const { user } = response.data;
-
-      // Atualiza o estado global do usuário
       dispatch(loginSuccess(user));
-
-      // Redireciona para o dashboard
       navigate("/dashboard");
     } catch (error) {
       console.error('Erro ao fazer login:', error.response || error);
-      setErrorMessage(error.response?.data?.message || "Falha no login. Verifique suas credenciais.");
+      setErrorMessage(error.response?.data?.error || "Falha no login. Verifique suas credenciais.");
     }
   };
 
   return (
-    <div className="login-container" style={{ marginTop: '100px' }}>
+    <div className="login-container">
       <h2>Login</h2>
-      <form onSubmit={handleLogin}>
-        <div className="login-form-field">
-          <label>Email</label>
-          <input 
-            type="email" 
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required 
-          />
-        </div>
-        <div className="login-form-field">
-          <label>Senha</label>
-          <input 
-            type="password" 
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required 
-          />
-        </div>
-        {errorMessage && <div className="error">{errorMessage}</div>} {/* Exibe mensagem de erro */}
-        <button type="submit" className="primary-button">Entrar</button>
+      <form onSubmit={handleLogin} className="form-container">
+        <InputField
+          label="Email"
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <InputField
+          label="Senha"
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        {errorMessage && <ErrorMessage message={errorMessage} />}
+        <PrimaryButton type="submit">Entrar</PrimaryButton>
       </form>
     </div>
   );
