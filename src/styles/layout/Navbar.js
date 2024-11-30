@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { ROUTES } from '../../routes/paths'; // Importe as rotas
 import logo from '../../components/imagens/NTD.png';
 import lupa from '../../components/imagens/lupa.png';
 
@@ -29,10 +30,10 @@ const Navbar = () => {
           ☰
         </button>
         <div className={`navbar-dropdown-menu ${isMenuOpen ? 'show' : ''}`}>
-          <button className="primary-button" type="button" onClick={() => navigate('/login')}>
+          <button className="primary-button" type="button" onClick={() => navigate(ROUTES.LOGIN)}>
             Fazer login
           </button>
-          <button className="primary-button" type="button" onClick={() => navigate('/cadastro')}>
+          <button className="primary-button" type="button" onClick={() => navigate(ROUTES.SIGNUP)}>
             Criar conta
           </button>
           <button className="primary-button" type="button" onClick={() => navigate('/sobre')}>
