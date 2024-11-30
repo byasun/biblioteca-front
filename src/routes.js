@@ -1,5 +1,6 @@
+// src/routes.js
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Error404 from './pages/Error404';
 import Login from './pages/Login';
@@ -11,31 +12,29 @@ import PrivateRoute from './components/auth/PrivateRoute';
 import { ROUTES } from './routes/paths';
 
 const AppRoutes = () => (
-  <Router>
-    <Routes>
-      {/* Rotas principais */}
-      <Route path={ROUTES.HOME} element={<Home />} />
-      <Route path={ROUTES.LOGIN} element={<Login />} />
-      <Route path={ROUTES.SIGNUP} element={<CadastroUsuario />} />
+  <Routes>
+    {/* Rotas principais */}
+    <Route path={ROUTES.HOME} element={<Home />} />
+    <Route path={ROUTES.LOGIN} element={<Login />} />
+    <Route path={ROUTES.SIGNUP} element={<CadastroUsuario />} />
 
-      {/* Rotas protegidas */}
-      <Route
-        path={ROUTES.DASHBOARD}
-        element={
-          <PrivateRoute>
-            <UserDashboard />
-          </PrivateRoute>
-        }
-      />
+    {/* Rotas protegidas */}
+    <Route
+      path={ROUTES.DASHBOARD}
+      element={
+        <PrivateRoute>
+          <UserDashboard />
+        </PrivateRoute>
+      }
+    />
 
-      {/* Rotas de livros */}
-      <Route path="/livros/detalhes/:id" element={<DetalhesLivro />} />
-      <Route path="/livros/avaliar/:id" element={<AvaliarLivro />} />
+    {/* Rotas de livros */}
+    <Route path="/livros/detalhes/:id" element={<DetalhesLivro />} />
+    <Route path="/livros/avaliar/:id" element={<AvaliarLivro />} />
 
-      {/* Página de erro */}
-      <Route path="*" element={<Error404 />} />
-    </Routes>
-  </Router>
+    {/* Página de erro */}
+    <Route path="*" element={<Error404 />} />
+  </Routes>
 );
 
 export default AppRoutes;

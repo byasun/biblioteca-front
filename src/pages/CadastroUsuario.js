@@ -1,19 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import axios from "axios";
-import api from "../api.js";
+import { useDispatch } from "react-redux";
+import { cadastrarUsuario } from "../redux/usuarios/usuarioActions"; // Importando a ação
 
 const CadastroUsuario = () => {
-  const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
 
   const formik = useFormik({
     initialValues: {
       nome: "",
       email: "",
-      chave: "", 
+      chave: "",
       senha: "",
-      senhaConfirmar: "", 
+      senhaConfirmar: "",
     },
     validationSchema: Yup.object({
       nome: Yup.string()
@@ -24,7 +24,7 @@ const CadastroUsuario = () => {
         .required("Email é obrigatório"),
       chave: Yup.string().matches(
         /^[A-Za-z0-9]*$/,
-        "A chave deve conter apenas letras e números"
+        "A chave deve conter apenas letras e números",
       ),
       senha: Yup.string()
         .min(6, "A senha precisa ter no mínimo 6 caracteres")
@@ -34,32 +34,23 @@ const CadastroUsuario = () => {
         .required("Confirmação de senha é obrigatória"),
     }),
     onSubmit: async (values) => {
-      const { senhaConfirmar, ...dadosUsuario } = values; 
-
-      const apiUrl = process.env.REACT_APP_API_URL;
-
-      setLoading(true);
+      const { senhaConfirmar, ...dadosUsuario } = values;
 
       try {
-        const response = await api.post('/usuarios/cadastrar', dadosUsuario)
-
-        setLoading(false); 
-        console.log("Resposta da API:", response.data);
-
-        if (response.data && response.data.id) {
-          alert(`Usuário cadastrado com sucesso! ID do usuário: ${response.data.id}`);
+        const response = await dispatch(cadastrarUsuario(dadosUsuario));
+        if (response?.id) {
+          alert(
+            `Usuário cadastrado com sucesso! ID do usuário: ${response.id}`,
+          );
         } else {
           alert("Usuário cadastrado com sucesso!");
         }
-
-        formik.resetForm(); 
+        formik.resetForm();
       } catch (error) {
-        setLoading(false); 
-        console.error("Erro ao cadastrar o usuário:", error);
-
-        const errorMessage =
-          error.response?.data?.error || "Erro no servidor. Tente novamente mais tarde.";
-        alert(`Erro ao cadastrar o usuário: ${errorMessage}`);
+        alert(
+          "Erro ao cadastrar o usuário: " +
+            (error.message || "Erro desconhecido"),
+        );
       }
     },
   });
@@ -68,83 +59,13 @@ const CadastroUsuario = () => {
     <div className="cadastro-container">
       <h1>Cadastro de Usuário</h1>
       <form onSubmit={formik.handleSubmit} className="form-container">
-        <div className="form-field">
-          <label htmlFor="nome">Nome</label>
-          <input
-            type="text"
-            id="nome"
-            name="nome"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.nome}
-          />
-          {formik.touched.nome && formik.errors.nome ? (
-            <div className="error">{formik.errors.nome}</div>
-          ) : null}
-        </div>
-
-        <div className="form-field">
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.email}
-          />
-          {formik.touched.email && formik.errors.email ? (
-            <div className="error">{formik.errors.email}</div>
-          ) : null}
-        </div>
-
-        <div className="form-field">
-          <label htmlFor="chave">Chave (opcional)</label>
-          <input
-            type="text"
-            id="chave"
-            name="chave"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.chave}
-          />
-          {formik.touched.chave && formik.errors.chave ? (
-            <div className="error">{formik.errors.chave}</div>
-          ) : null}
-        </div>
-
-        <div className="form-field">
-          <label htmlFor="senha">Senha</label>
-          <input
-            type="password"
-            id="senha"
-            name="senha"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.senha}
-          />
-          {formik.touched.senha && formik.errors.senha ? (
-            <div className="error">{formik.errors.senha}</div>
-          ) : null}
-        </div>
-
-        <div className="form-field">
-          <label htmlFor="senhaConfirmar">Confirmação de Senha</label>
-          <input
-            type="password"
-            id="senhaConfirmar"
-            name="senhaConfirmar"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.senhaConfirmar}
-          />
-          {formik.touched.senhaConfirmar && formik.errors.senhaConfirmar ? (
-            <div className="error">{formik.errors.senhaConfirmar}</div>
-          ) : null}
-        </div>
-
-        <button type="submit" className="primary-button" disabled={loading}>
-          {loading ? "Cadastrando..." : "Cadastrar"}
+        {/* Inputs */}
+        <button
+          type="submit"
+          className="primary-button"
+          disabled={formik.isSubmitting}
+        >
+          {formik.isSubmitting ? "Cadastrando..." : "Cadastrar"}
         </button>
       </form>
     </div>
