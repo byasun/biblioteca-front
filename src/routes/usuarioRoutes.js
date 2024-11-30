@@ -1,11 +1,12 @@
+// src/routes/usuarioRoutes.js
 import React from 'react';
 import { Route } from 'react-router-dom';
-import { UsuarioDashboard, CadastroUsuario } from '../components/usuarios';
+import { UsuarioDashboard, CadastroUsuario } from '../components/usuarios';  // Componentes para dashboard e cadastro de usuário
 
 const UsuarioRoutes = () => (
   <>
-    <Route path="/usuarios/dashboard" element={<UsuarioDashboard />} />
-    <Route path="/usuarios/cadastro" element={<CadastroUsuario />} />
+    <Route path="/usuarios/dashboard" element={<UsuarioDashboard />} />  {/* Rota para o dashboard do usuário */}
+    <Route path="/usuarios/cadastro" element={<CadastroUsuario />} />  {/* Rota para cadastro do usuário */}
   </>
 );
 

@@ -1,1 +1,1 @@
-export const apiUrl = 'https://biblioteca-comunitaria.azurewebsites.net/api';
+export const apiUrl = process.env.REACT_APP_API_URL;

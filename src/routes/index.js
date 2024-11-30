@@ -1,20 +1,18 @@
 // src/routes/index.js
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import LivroRoutes from './livroRoutes';
-import UsuarioRoutes from './usuarioRoutes';
-import Home from '../pages/Home';
-import Error404 from '../pages/Error404';
+import { Routes, Route } from 'react-router-dom';
+import Home from '../pages/Home';  // A página principal
+import Error404 from '../pages/Error404';  // Página de erro 404
+import LivroRoutes from './livroRoutes';  // Rotas para livros
+import UsuarioRoutes from './usuarioRoutes';  // Rotas para usuários
 
 const AppRoutes = () => (
-  <Router>
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <LivroRoutes />
-      <UsuarioRoutes />
-      <Route path="*" element={<Error404 />} />
-    </Routes>
-  </Router>
+  <Routes>
+    <Route path="/" element={<Home />} />  {/* Página inicial */}
+    <LivroRoutes />  {/* Rotas de livros */}
+    <UsuarioRoutes />  {/* Rotas de usuários */}
+    <Route path="*" element={<Error404 />} />  {/* Página de erro 404 para rotas não encontradas */}
+  </Routes>
 );
 
 export default AppRoutes;
