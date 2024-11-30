@@ -1,6 +1,8 @@
+// src/redux/usuarios/usuarioReducer.js
+
 const initialState = {
   isAuthenticated: !!localStorage.getItem('token'),
-  user: null, // Inicializa o usuário como null
+  user: null,
 };
 
 const usuarioReducer = (state = initialState, action) => {

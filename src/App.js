@@ -1,11 +1,12 @@
+// src/App.js
 import React from 'react';
 import { Provider } from 'react-redux';
-import GlobalStyles from './styles/global/GlobalStyles'; // Estilos globais
-import NavbarStyles from './styles/components/NavbarStyles'; // Estilos da Navbar
-import ButtonStyles from './styles/components/ButtonStyles'; // Estilos para botões
-import store from './redux/store';
-import Navbar from './styles/layout/Navbar'; // Navbar como componente funcional
-import AppRoutes from './routes'; // Rotas principais
+import GlobalStyles from './styles/global/GlobalStyles';  // Estilos globais
+import NavbarStyles from './styles/components/NavbarStyles';  // Estilos para a Navbar
+import ButtonStyles from './styles/components/ButtonStyles';  // Estilos para botões
+import store from './redux/store';  // Redux store
+import Navbar from './styles/layout/Navbar';  // Componente Navbar
+import AppRoutes from './routes';  // Rotas principais
 
 const App = () => (
   <Provider store={store}>
@@ -13,7 +14,7 @@ const App = () => (
     <NavbarStyles />
     <ButtonStyles />
     <Navbar />
-    <AppRoutes />
+    <AppRoutes />  {/* Renderiza as rotas dentro do AppRoutes */}
   </Provider>
 );
 

@@ -1,14 +1,10 @@
-import { createStore, applyMiddleware, compose } from 'redux';
-import { thunk } from 'redux-thunk'; // Middleware para ações assíncronas
-import rootReducer from './rootReducer'; // Importa o rootReducer do arquivo index.js
+// src/redux/store.js
 
-// Configuração do Redux DevTools
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+import { configureStore } from '@reduxjs/toolkit';
+import rootReducer from './rootReducer';  // Importa o rootReducer atualizado
 
-// Criação da loja Redux
-const store = createStore(
-  rootReducer, // O reducer raiz que combina todos os reducers
-  composeEnhancers(applyMiddleware(thunk)) // Aplica middleware e habilita o Redux DevTools
-);
+const store = configureStore({
+  reducer: rootReducer,
+});
 
-export default store; 
+export default store;

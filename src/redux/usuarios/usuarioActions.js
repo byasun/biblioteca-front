@@ -1,52 +1,54 @@
+// src/redux/usuarios/usuarioSlice.js
+
+import { createSlice } from '@reduxjs/toolkit';
 import api from '../../api';
 
-// Ação de sucesso no cadastro
-export const cadastroSuccess = (user) => ({
-  type: 'CADASTRO_SUCCESS',
-  payload: user,
+const initialState = {
+  isAuthenticated: !!localStorage.getItem('token'),
+  user: null,
+  error: null,
+};
+
+const usuarioSlice = createSlice({
+  name: 'usuario',
+  initialState,
+  reducers: {
+    loginSuccess: (state, action) => {
+      state.isAuthenticated = true;
+      state.user = action.payload;
+      if (action.payload?.token) {
+        localStorage.setItem('token', action.payload.token);
+      }
+    },
+    logout: (state) => {
+      localStorage.removeItem('token');
+      state.isAuthenticated = false;
+      state.user = null;
+    },
+    cadastroError: (state, action) => {
+      state.error = action.payload;
+    },
+    cadastroSuccess: (state, action) => {
+      state.user = action.payload;
+    },
+  },
 });
 
-// Ação de erro no cadastro
-export const cadastroError = (error) => ({
-  type: 'CADASTRO_ERROR',
-  payload: error,
-});
+export const { loginSuccess, logout, cadastroError, cadastroSuccess } = usuarioSlice.actions;
 
-// Ação para cadastrar um novo usuário
 export const cadastrarUsuario = (dadosUsuario) => async (dispatch) => {
   try {
     const response = await api.post('/usuarios/registrar', dadosUsuario);
-    
-    // Sucesso no cadastro
     dispatch(cadastroSuccess(response.data));
-    return response.data; // Retorna o usuário criado, caso necessário
+    return response.data;
   } catch (error) {
     console.error('Erro ao cadastrar o usuário:', error.response || error.message);
     dispatch(cadastroError({
       message: error.response?.data?.message || 'Erro desconhecido',
       status: error.response?.status || 500,
     }));
-    
-    throw error; // Permite tratar o erro no componente
+    throw error;
   }
 };
 
-export const loginSuccess = (user) => {
-  if (user?.token) {
-    localStorage.setItem('token', user.token);
-  }
-
-  return {
-    type: 'LOGIN_SUCCESS',
-    payload: user,
-  };
-};
-
-export const logout = () => {
-  // Remove o token do localStorage ao fazer logout
-  localStorage.removeItem('token');
-
-  return {
-    type: 'LOGOUT',
-  };
-};
+export default usuarioSlice.reducer;
