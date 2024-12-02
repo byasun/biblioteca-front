@@ -6,7 +6,7 @@ import { UsuarioDashboard, CadastroUsuario } from '../components/usuarios';  // 
 const UsuarioRoutes = () => (
   <>
     <Route path="/usuarios/dashboard" element={<UsuarioDashboard />} />  {/* Rota para o dashboard do usuário */}
-    <Route path="/usuarios/cadastro" element={<CadastroUsuario />} />  {/* Rota para cadastro do usuário */}
+    <Route path="/usuarios/cadastrar" element={<CadastroUsuario />} />  {/* Rota para cadastro do usuário */}
   </>
 );
 
