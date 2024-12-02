@@ -3,16 +3,24 @@
     {
       "route": "/api/*",
       "methods": [
-        "get",
-        "head",
-        "post",
-        "put",
-        "delete",
-        "options",
-        "trace",
-        "patch"
+        "GET",
+        "HEAD",
+        "POST",
+        "PUT",
+        "DELETE",
+        "OPTIONS",
+        "TRACE",
+        "PATCH"
       ],
-      "rewrite": "/api/*"
+      "rewrite": "/api/*" // Certifique-se de que o prefixo da API está correto
+    },
+    {
+      "route": "/app/*", // Rotas do frontend para o React
+      "rewrite": "/index.html"
+    },
+    {
+      "route": "/*", // Tratamento para outras rotas
+      "statusCode": 404
     }
   ]
 }

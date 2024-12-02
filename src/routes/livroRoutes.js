@@ -5,8 +5,8 @@ import { DetalhesLivro, AvaliarLivro } from '../components/livros';  // Componen
 
 const LivroRoutes = () => (
   <>
-    <Route path="/livros/detalhes/:id" element={<DetalhesLivro />} />  {/* Rota para detalhes do livro */}
-    <Route path="/livros/avaliar/:id" element={<AvaliarLivro />} />  {/* Rota para avaliar o livro */}
+    <Route path="/app/livros/detalhes/:id" element={<DetalhesLivro />} />
+    <Route path="/app/livros/avaliar/:id" element={<AvaliarLivro />} />
   </>
 );
 
