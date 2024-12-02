@@ -36,7 +36,7 @@ export const { loginSuccess, logout, cadastroError, cadastroSuccess } = usuarioS
 
 export const cadastrarUsuario = (dadosUsuario) => async (dispatch) => {
   try {
-    const response = await api.post('/usuarios/cadastrar', dadosUsuario);
+    const response = await api.post('/api/usuarios/cadastrar', dadosUsuario);
     dispatch(cadastroSuccess(response.data));
     return response.data;
   } catch (error) {
