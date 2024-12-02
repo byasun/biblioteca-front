@@ -1,9 +1,1 @@
-{
-  "routes": [
-    {
-      "route": "/api/*",
-      "rewrite": "https://biblioteca-comunitaria.azurewebsites.net/api/*",
-      "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
-    }
-  ]
-}
+{}
