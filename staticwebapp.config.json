@@ -1,15 +1,1 @@
-{
-    "routes": [
-      {
-        "route": "/api/*",
-        "allowedRoles": ["anonymous"],
-        "proxy": "https://biblioteca-comunitaria.azurewebsites.net/"
-      },
-      {
-        "route": "/*",
-        "serve": "/index.html",
-        "statusCode": 200
-      }
-    ]
-  }
-  
+{}
