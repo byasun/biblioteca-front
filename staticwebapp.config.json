@@ -3,7 +3,7 @@
       {
         "route": "/api/*",
         "allowedRoles": ["anonymous"],
-        "proxy": "https://supreme-rotary-phone-7j4qjwv6gvvfx5j4-8181.app.github.dev/"
+        "proxy": "https://biblioteca-comunitaria.azurewebsites.net/"
       },
       {
         "route": "/*",
