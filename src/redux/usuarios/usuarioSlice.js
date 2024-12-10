@@ -13,9 +13,9 @@ const usuarioSlice = createSlice({
   reducers: {
     loginSuccess: (state, action) => {
       state.isAuthenticated = true;
-      state.user = action.payload;
-      if (action.payload?.token) {
-        localStorage.setItem('token', action.payload.token);
+      state.user = action.payload.user;  // Guarde o usuário
+      if (action.payload.token) {
+        localStorage.setItem('token', action.payload.token);  // Guarde o token
       }
     },
     logout: (state) => {

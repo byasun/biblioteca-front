@@ -28,8 +28,12 @@ const Login = () => {
 
     try {
       const response = await api.post('/usuarios/login', { email, password });
-      const { user } = response.data;
-      dispatch(loginSuccess(user));
+      const { token, user } = response.data;
+  
+      // Salve o token no Redux e localStorage
+      dispatch(loginSuccess({ token, user }));
+  
+      // Redirecionar para o dashboard
       navigate("/dashboard");
     } catch (error) {
       console.error('Erro ao fazer login:', error.response || error);
