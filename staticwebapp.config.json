@@ -1,7 +1,7 @@
 {
   "routes": [
     {
-      "route": "/usuarios/*",
+      "route": "/api/*",
       "rewrite": "https://biblioteca-comunitaria.azurewebsites.net/api/*",
       "methods": [
         "GET",
