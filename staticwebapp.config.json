@@ -1,1 +1,18 @@
-{}
+{
+  "routes": [
+    {
+      "route": "https://biblioteca-comunitaria.azurewebsites.net/api/*",
+      "methods": [
+        "get",
+        "head",
+        "post",
+        "put",
+        "delete",
+        "connect",
+        "options",
+        "trace",
+        "patch"
+      ]
+    }
+  ]
+}
