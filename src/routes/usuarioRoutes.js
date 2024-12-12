@@ -1,4 +1,3 @@
-// src/routes/usuarioRoutes.js
 import React from 'react';
 import { Route } from 'react-router-dom';
 import { UsuarioDashboard, CadastroUsuario } from '../components/usuarios';  // Componentes para dashboard e cadastro de usuário

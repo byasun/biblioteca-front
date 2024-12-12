@@ -15,7 +15,7 @@ export const fetchLivrosRequest = () => ({
   export const addLivro = (livro) => ({
     type: 'ADD_LIVRO',
     payload: livro,
-  });
+  });  
   
   export const removeLivro = (livroId) => ({
     type: 'REMOVE_LIVRO',
