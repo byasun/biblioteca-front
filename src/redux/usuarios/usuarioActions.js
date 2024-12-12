@@ -45,7 +45,7 @@ export const cadastrarUsuario = (dadosUsuario) => async (dispatch) => {
 // Ação assíncrona para fazer login
 export const loginUsuario = (email, password) => async (dispatch) => {
   try {
-    const response = await api.post('/usuarios/login', { email, password });
+    const response = await api.post('/api/usuarios/login', { email, password });
     const { token, user } = response.data;
 
     // Salvar token no localStorage
