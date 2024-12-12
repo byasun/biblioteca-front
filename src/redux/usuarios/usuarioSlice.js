@@ -18,6 +18,11 @@ const usuarioSlice = createSlice({
         localStorage.setItem('token', action.payload.token);  // Guarde o token
       }
     },
+    loginFailure: (state, action) => {
+      state.isAuthenticated = false;
+      state.user = null;
+      state.error = action.payload;
+    },
     logout: (state) => {
       localStorage.removeItem('token');
       state.isAuthenticated = false;
@@ -32,7 +37,7 @@ const usuarioSlice = createSlice({
   },
 });
 
-export const { loginSuccess, logout, cadastroError, cadastroSuccess } = usuarioSlice.actions;
+export const { loginSuccess, loginFailure, logout, cadastroError, cadastroSuccess } = usuarioSlice.actions;
 
 export const cadastrarUsuario = (dadosUsuario) => async (dispatch) => {
   try {

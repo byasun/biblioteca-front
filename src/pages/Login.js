@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { loginSuccess } from '../redux/usuarios/usuarioActions';
+import { loginUsuario } from '../redux/usuarios/usuarioActions';
 import InputField from '../components/ui/inputs/InputFields';
 import ErrorMessage from '../components/common/ErrorMessage';
 import PrimaryButton from '../components/ui/buttons/PrimaryButton';
@@ -20,24 +20,21 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
+  
     if (!email || !password) {
       setErrorMessage('Por favor, preencha todos os campos.');
       return;
     }
-
+  
     try {
-      const response = await api.post('/usuarios/login', { email, password });
-      const { token, user } = response.data;
-  
-      // Salve o token no Redux e localStorage
-      dispatch(loginSuccess({ token, user }));
-  
-      // Redirecionar para o dashboard
-      navigate("/dashboard");
+      // Despacha a ação do Redux para lidar com login
+      await dispatch(loginUsuario(email, password));
+      
+      // Redirecionar para o dashboard após login bem-sucedido
+      navigate('/dashboard');
     } catch (error) {
       console.error('Erro ao fazer login:', error.response || error);
-      setErrorMessage(error.response?.data?.error || "Falha no login. Verifique suas credenciais.");
+      setErrorMessage(error.response?.data?.error || 'Falha no login. Verifique suas credenciais.');
     }
   };
 
