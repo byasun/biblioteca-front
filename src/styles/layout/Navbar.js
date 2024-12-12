@@ -1,15 +1,24 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ROUTES } from '../../routes/paths'; // Importe as rotas
+import { useSelector, useDispatch } from 'react-redux';
+import { logout } from '../../redux/usuarios/usuarioSlice'; // Ação de logout
+import { ROUTES } from '../../routes/paths'; // Rotas definidas
 import logo from '../../components/imagens/NTD.png';
 import lupa from '../../components/imagens/lupa.png';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const isAuthenticated = useSelector((state) => state.usuario.isAuthenticated); // Verifica se está logado
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handleLogout = () => {
+    dispatch(logout()); // Realiza logout
+    navigate('/'); // Redireciona para a página inicial
   };
 
   return (
@@ -30,15 +39,30 @@ const Navbar = () => {
           ☰
         </button>
         <div className={`navbar-dropdown-menu ${isMenuOpen ? 'show' : ''}`}>
-          <button className="primary-button" type="button" onClick={() => navigate(ROUTES.LOGIN)}>
-            Fazer login
-          </button>
-          <button className="primary-button" type="button" onClick={() => navigate(ROUTES.SIGNUP)}>
-            Criar conta
-          </button>
-          <button className="primary-button" type="button" onClick={() => navigate('/sobre')}>
-            Saiba Mais
-          </button>
+          {!isAuthenticated ? (
+            // Navbar para usuários não logados
+            <>
+              <button className="primary-button" type="button" onClick={() => navigate(ROUTES.LOGIN)}>
+                Fazer Login
+              </button>
+              <button className="primary-button" type="button" onClick={() => navigate(ROUTES.SIGNUP)}>
+                Criar Conta
+              </button>
+              <button className="primary-button" type="button" onClick={() => navigate('/sobre')}>
+                Saiba Mais
+              </button>
+            </>
+          ) : (
+            // Navbar para usuários logados
+            <>
+              <button className="primary-button" type="button" onClick={() => navigate('/dashboard')}>
+                Estante
+              </button>
+              <button className="primary-button" type="button" onClick={handleLogout}>
+                Logout
+              </button>
+            </>
+          )}
         </div>
       </div>
     </nav>

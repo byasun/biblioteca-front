@@ -1,17 +1,10 @@
 import React from 'react';
 
-const PegarLivro = () => {
-    const handlePegar = () => {
-        // Lógica para pegar o livro
-        console.log('Livro pegado!');
-    };
-
-    return (
-        <div>
-            <h2>Pegar Livro</h2>
-            <button onClick={handlePegar}>Pegar Livro</button>
-        </div>
-    );
-};
+const PegarLivro = () => (
+  <div>
+    <h2>Pegar Livro</h2>
+    {/* Formulário ou lista de livros disponíveis para pegar */}
+  </div>
+);
 
 export default PegarLivro;

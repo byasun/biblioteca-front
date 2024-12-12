@@ -27,16 +27,14 @@ const Login = () => {
     }
   
     try {
-      // Despacha a ação do Redux para lidar com login
       await dispatch(loginUsuario(email, password));
-      
-      // Redirecionar para o dashboard após login bem-sucedido
-      navigate('/dashboard');
+      navigate('/minha-estante'); // Redirecionar para a página da estante
     } catch (error) {
       console.error('Erro ao fazer login:', error.response || error);
       setErrorMessage(error.response?.data?.error || 'Falha no login. Verifique suas credenciais.');
     }
   };
+  
 
   return (
     <div className="login-container">
