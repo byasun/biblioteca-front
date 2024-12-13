@@ -40,6 +40,11 @@ const UserDashboard = () => {
       });
   };
 
+  const handleLogout = () => {
+    dispatch(logout()); // Remove autenticação do estado global
+    navigate(ROUTES.LOGIN); // Redireciona para a página de login
+  };
+
   return (
     <Container>
       <h2>Perfil do Usuário</h2>
@@ -74,7 +79,7 @@ const UserDashboard = () => {
           <p>Nenhum livro na estante.</p>
         )}
       </EstanteSection>
-      <button className="primary-button" onClick={() => dispatch(logout())}>Logout</button>
+      <button className="primary-button" onClick={handleLogout}>Logout</button>
     </Container>
   );
 };

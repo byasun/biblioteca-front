@@ -24,9 +24,9 @@ const usuarioSlice = createSlice({
       state.error = action.payload;
     },
     logout: (state) => {
-      localStorage.removeItem('token');
       state.isAuthenticated = false;
       state.user = null;
+      state.error = null;
     },
     cadastroError: (state, action) => {
       state.error = action.payload;
