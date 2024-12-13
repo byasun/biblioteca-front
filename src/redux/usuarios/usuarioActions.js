@@ -51,11 +51,12 @@ export const loginUsuario = (email, password) => async (dispatch) => {
     // Salvar token no localStorage
     localStorage.setItem('token', token);
 
-    // Despachar a ação de sucesso
+    // Atualizar o estado global
     dispatch(loginSuccess({ token, user }));
+    return { token, user };
   } catch (error) {
-    console.error('Erro ao fazer login:', error);
-    dispatch(loginFailure(error.response?.data || 'Erro ao fazer login'));
+    console.error('Erro ao fazer login:', error.response || error.message);
+    dispatch(loginFailure(error.response?.data?.error || 'Erro ao fazer login.'));
     throw error;
   }
 };
