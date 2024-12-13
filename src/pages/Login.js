@@ -20,21 +20,20 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-  
+
     if (!email || !password) {
       setErrorMessage('Por favor, preencha todos os campos.');
       return;
     }
-  
+
     try {
       await dispatch(loginUsuario(email, password));
-      navigate('/minha-estante'); // Redirecionar para a página da estante
+      navigate('/usuario-dashboard'); // Redirecionar para a página do dashboard do usuário
     } catch (error) {
       console.error('Erro ao fazer login:', error.response || error);
       setErrorMessage(error.response?.data?.error || 'Falha no login. Verifique suas credenciais.');
     }
   };
-  
 
   return (
     <div className="login-container">
