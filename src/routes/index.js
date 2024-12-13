@@ -13,7 +13,7 @@ const AppRoutes = () => (
     <LivroRoutes /> 
     <UsuarioRoutes /> 
     <Route 
-      path="/usuario-dashboard" 
+      path="/usuarioDashboard" 
       element={
         <PrivateRoute>
           <UsuarioDashboard />
