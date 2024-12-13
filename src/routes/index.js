@@ -6,22 +6,24 @@ import LivroRoutes from './livroRoutes';
 import UsuarioRoutes from './usuarioRoutes'; 
 import UsuarioDashboard from '../pages/usuarioDashboard';
 import PrivateRoute from '../components/auth/PrivateRoute';
+import { ROUTES } from './paths';
 
 const AppRoutes = () => (
   <Routes>
-    <Route path="/" element={<Home />} /> 
-    <LivroRoutes /> 
-    <UsuarioRoutes /> 
+    <Route path={ROUTES.HOME} element={<Home />} />
+    <LivroRoutes />
+    <UsuarioRoutes />
     <Route 
-      path="/usuarioDashboard" 
+      path={ROUTES.DASHBOARD} 
       element={
         <PrivateRoute>
           <UsuarioDashboard />
         </PrivateRoute>
       } 
-    /> 
+    />
     <Route path="*" element={<Error404 />} />
   </Routes>
 );
+
 
 export default AppRoutes;

@@ -2,5 +2,5 @@ export const ROUTES = {
   HOME: "/",
   LOGIN: "/login",
   SIGNUP: "/usuarios/cadastro",
-  DASHBOARD: "/usuarios/dashboard",
+  DASHBOARD: "/usuarioDashboard", // Atualizado para corresponder ao AppRoutes
 };

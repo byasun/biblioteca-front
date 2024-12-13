@@ -5,6 +5,7 @@ import { loginUsuario } from '../redux/usuarios/usuarioActions';
 import InputField from '../components/ui/inputs/InputFields';
 import ErrorMessage from '../components/common/ErrorMessage';
 import PrimaryButton from '../components/ui/buttons/PrimaryButton';
+import { ROUTES } from '../routes/paths';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -27,7 +28,7 @@ const Login = () => {
 
     try {
       await dispatch(loginUsuario(email, password));
-      navigate('/usuarioDashboard'); // Redirecionar para a página do dashboard do usuário
+      navigate(ROUTES.DASHBOARD);
     } catch (error) {
       console.error('Erro ao fazer login:', error.response || error);
       setErrorMessage(error.response?.data?.error || 'Falha no login. Verifique suas credenciais.');
