@@ -55,7 +55,7 @@ const Navbar = () => {
           ) : (
             // Navbar para usuários logados
             <>
-              <button className="primary-button" type="button" onClick={() => navigate('/dashboard')}>
+              <button className="primary-button" type="button" onClick={() => navigate('/usuarioDashboard')}>
                 Estante
               </button>
               <button className="primary-button" type="button" onClick={handleLogout}>
