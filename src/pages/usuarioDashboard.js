@@ -14,6 +14,12 @@ const EstanteSection = styled.div`
 `;
 
 const UserDashboard = () => {
+  user = useSelector((state) => state.usuario.user);
+
+  if (!user) {
+    return <div>Carregando...</div>; // Ou redirecione para o login
+  }
+  
   const dispatch = useDispatch();
   const { user, isAuthenticated } = useSelector((state) => state.usuario);
   const [estante, setEstante] = useState([]);
