@@ -11,8 +11,9 @@ const usuarioReducer = (state = initialState, action) => {
     case LOGIN_SUCCESS:
       return {
         ...state,
-        isAuthenticated: true,
-        user: action.payload.user,
+        isAuthenticated: true, // Garante que o usuário está autenticado
+        user: action.payload.user, // Atualiza o usuário corretamente
+        error: null,
       };
     case LOGOUT:
       localStorage.removeItem('token');
