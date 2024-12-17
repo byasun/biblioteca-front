@@ -15,13 +15,14 @@ const EstanteSection = styled.div`
 
 const UserDashboard = () => {
   const dispatch = useDispatch();
-const { user, isAuthenticated } = useSelector((state) => state.usuario);
-
-if (!user) {
-  return <div>Carregando...</div>; // Ou redirecione para o login
-}
-
+  const navigate = useNavigate();
+  
+  const { user, isAuthenticated } = useSelector((state) => state.usuario);
   const [estante, setEstante] = useState([]);
+
+  if (!user) {
+    return <div>Carregando...</div>; // Ou redirecione para o login
+  }
 
   useEffect(() => {
     if (isAuthenticated) {
