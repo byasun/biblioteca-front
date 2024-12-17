@@ -12,7 +12,7 @@ const usuarioReducer = (state = initialState, action) => {
       return {
         ...state,
         isAuthenticated: true,
-        user: action.payload,
+        user: action.payload.user,
       };
     case LOGOUT:
       localStorage.removeItem('token');

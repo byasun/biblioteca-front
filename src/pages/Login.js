@@ -29,7 +29,7 @@ const Login = () => {
     try {
       const result = await dispatch(loginUsuario(email, password));
       console.log('Usuário logado:', result); // Verifica os dados retornados
-      navigate(ROUTES.DASHBOARD); // Redireciona após o login
+      navigate(ROUTES.DASHBOARD);
     } catch (error) {
       console.error('Erro ao fazer login:', error.response || error);
       setErrorMessage(error.response?.data?.error || 'Falha no login. Verifique suas credenciais.');
