@@ -15,10 +15,11 @@ export const loginFailure = (error) => ({
 
 // Ação para fazer logout
 export const logout = () => (dispatch) => {
-  // Remover o token do localStorage
+  // Remover dados do LocalStorage
   localStorage.removeItem('token');
+  localStorage.removeItem('user');
 
-  // Despachar a ação de logout
+  // Despachar ação de logout
   dispatch({ type: LOGOUT });
 };
 

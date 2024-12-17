@@ -2,7 +2,7 @@ import { LOGIN_SUCCESS, LOGOUT, CADASTRO_SUCCESS, CADASTRO_ERROR } from './usuar
 
 const initialState = {
   isAuthenticated: !!localStorage.getItem('token'),
-  user: null,
+  user: JSON.parse(localStorage.getItem('user')) || null,
   error: null,
 };
 
@@ -15,13 +15,13 @@ const usuarioReducer = (state = initialState, action) => {
         user: action.payload.user, // Atualiza o usuário corretamente
         error: null,
       };
-    case LOGOUT:
-      localStorage.removeItem('token');
-      return {
-        ...state,
-        isAuthenticated: false,
-        user: null,
-      };
+      case LOGOUT:
+        return {
+          ...state,
+          isAuthenticated: false,
+          user: null,
+          error: null,
+        };
     case CADASTRO_SUCCESS:
       return {
         ...state,
