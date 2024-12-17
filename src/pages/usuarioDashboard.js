@@ -4,6 +4,7 @@ import api from '../api';
 import moment from 'moment';
 import { logout } from '../redux/usuarios/usuarioActions';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 const Container = styled.div`
   padding: 2rem;
