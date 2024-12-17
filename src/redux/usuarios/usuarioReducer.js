@@ -15,13 +15,13 @@ const usuarioReducer = (state = initialState, action) => {
         user: action.payload.user, // Atualiza o usuário corretamente
         error: null,
       };
-      case LOGOUT:
-        return {
-          ...state,
-          isAuthenticated: false,
-          user: null,
-          error: null,
-        };
+    case LOGOUT:
+      return {
+        ...state,
+        isAuthenticated: false,
+        user: null,
+        error: null,
+      };
     case CADASTRO_SUCCESS:
       return {
         ...state,

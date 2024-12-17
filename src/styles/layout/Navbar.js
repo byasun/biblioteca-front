@@ -6,10 +6,11 @@ import { ROUTES } from '../../routes/paths'; // Rotas definidas
 import logo from '../../components/imagens/NTD.png';
 import lupa from '../../components/imagens/lupa.png';
 
+const navigate = useNavigate(); // Para navegação
+const dispatch = useDispatch(); // Para disparar ações do Redux
+
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
   const isAuthenticated = useSelector((state) => state.usuario.isAuthenticated); // Verifica se está logado
 
   const toggleMenu = () => {
@@ -17,9 +18,9 @@ const Navbar = () => {
   };
 
   const handleLogout = () => {
-    dispatch(logout()); // Realiza logout
-    navigate('/'); // Redireciona para a página inicial
-  };
+    dispatch(logout()); // Dispara a ação de logout
+    navigate(ROUTES.LOGIN); // Redireciona para a página de login
+  };  
 
   return (
     <nav className="navbar">
