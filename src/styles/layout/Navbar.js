@@ -6,12 +6,13 @@ import { ROUTES } from '../../routes/paths'; // Rotas definidas
 import logo from '../../components/imagens/NTD.png';
 import lupa from '../../components/imagens/lupa.png';
 
-const navigate = useNavigate(); // Para navegação
-const dispatch = useDispatch(); // Para disparar ações do Redux
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const isAuthenticated = useSelector((state) => state.usuario.isAuthenticated); // Verifica se está logado
+
+  const navigate = useNavigate(); // Para navegação
+  const dispatch = useDispatch(); // Para disparar ações do Redux
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
