@@ -34,6 +34,21 @@ const usuarioSlice = createSlice({
 
 export const { loginSuccess, loginFailure, logoutSuccess } = usuarioSlice.actions;
 
+export const cadastrarUsuario = (dadosUsuario) => async (dispatch) => {
+  try {
+    const response = await api.post('/api/usuarios/cadastrar', dadosUsuario);
+    dispatch(cadastroSuccess(response.data));
+    return response.data;
+  } catch (error) {
+    console.error('Erro ao cadastrar o usuário:', error.response || error.message);
+    dispatch(cadastroError({
+      message: error.response?.data?.message || 'Erro desconhecido',
+      status: error.response?.status || 500,
+    }));
+    throw error;
+  }
+};
+
 export const login = (email, password) => async (dispatch) => {
   try {
     const data = await login({ email, password });
