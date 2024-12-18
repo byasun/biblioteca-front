@@ -49,11 +49,14 @@ export const cadastrarUsuario = (dadosUsuario) => async (dispatch) => {
   }
 };
 
-export const login = (email, password) => async (dispatch) => {
+export const loginUsuario = (email, password) => async (dispatch) => {
   try {
-    const data = await login({ email, password });
-    dispatch(loginSuccess(data));
+    const data = await login({ email, password }); // Aqui chamamos a API
+    console.log('Resposta do login:', data); // Verifique o que está sendo retornado
+    dispatch(loginSuccess(data)); // Armazena o usuário e o token no estado global
+    return data;
   } catch (error) {
+    console.error('Erro ao realizar login:', error.message);
     dispatch(loginFailure(error.message));
     throw error;
   }

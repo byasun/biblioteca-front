@@ -11,9 +11,10 @@ const api = axios.create({
 
 export const login = async (credentials) => {
   try {
-    const response = await api.post('/usuarios/login', credentials);
+    const response = await api.post('/usuarios/login', credentials); // Certifique-se de que esse endpoint está correto
     return response.data;
   } catch (error) {
+    console.error('Erro na função de login:', error.response || error.message);
     throw new Error(error.response?.data?.error || 'Erro ao realizar login');
   }
 };
