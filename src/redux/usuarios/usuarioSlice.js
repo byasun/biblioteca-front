@@ -34,7 +34,7 @@ const usuarioSlice = createSlice({
 
 export const { loginSuccess, loginFailure, logoutSuccess } = usuarioSlice.actions;
 
-export const loginUsuario = (email, password) => async (dispatch) => {
+export const login = (email, password) => async (dispatch) => {
   try {
     const data = await login({ email, password });
     dispatch(loginSuccess(data));
@@ -44,7 +44,7 @@ export const loginUsuario = (email, password) => async (dispatch) => {
   }
 };
 
-export const logoutUsuario = () => async (dispatch) => {
+export const logout = () => async (dispatch) => {
   try {
     await logout();
     dispatch(logoutSuccess());
