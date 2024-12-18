@@ -8,7 +8,6 @@ import { ROUTES } from './paths';
 
 const AppRoutes = () => (
   <Routes>
-    {/* Rotas estáticas */}
     <Route path={ROUTES.HOME} element={<Home />} />
     <Route
       path={ROUTES.DASHBOARD}
@@ -19,11 +18,9 @@ const AppRoutes = () => (
       }
     />
 
-    {/* Outras rotas (dinâmicas) */}
-    <Route path="/livros/*" element={<div>Livro Routes</div>} /> {/* Substitua pelo real */}
-    <Route path="/usuarios/*" element={<div>Usuario Routes</div>} /> {/* Substitua pelo real */}
+    <Route path="/livros/*" element={<div>Livro Routes</div>} /> 
+    <Route path="/usuarios/*" element={<div>Usuario Routes</div>} />
 
-    {/* Rota de erro 404 */}
     <Route path="*" element={<Error404 />} />
   </Routes>
 );

@@ -23,33 +23,33 @@ const usuarioSlice = createSlice({
       state.user = null;
       state.error = action.payload;
     },
-    logout: (state) => {
+    logoutSuccess: (state) => {
       state.isAuthenticated = false;
       state.user = null;
       state.error = null;
-    },
-    cadastroError: (state, action) => {
-      state.error = action.payload;
-    },
-    cadastroSuccess: (state, action) => {
-      state.user = action.payload;
+      localStorage.removeItem('token');
     },
   },
 });
 
-export const { loginSuccess, loginFailure, logout, cadastroError, cadastroSuccess } = usuarioSlice.actions;
+export const { loginSuccess, loginFailure, logoutSuccess } = usuarioSlice.actions;
 
-export const cadastrarUsuario = (dadosUsuario) => async (dispatch) => {
+export const loginUsuario = (email, password) => async (dispatch) => {
   try {
-    const response = await api.post('/api/usuarios/cadastrar', dadosUsuario);
-    dispatch(cadastroSuccess(response.data));
-    return response.data;
+    const data = await login({ email, password });
+    dispatch(loginSuccess(data));
   } catch (error) {
-    console.error('Erro ao cadastrar o usuário:', error.response || error.message);
-    dispatch(cadastroError({
-      message: error.response?.data?.message || 'Erro desconhecido',
-      status: error.response?.status || 500,
-    }));
+    dispatch(loginFailure(error.message));
+    throw error;
+  }
+};
+
+export const logoutUsuario = () => async (dispatch) => {
+  try {
+    await logout();
+    dispatch(logoutSuccess());
+  } catch (error) {
+    console.error('Erro ao realizar logout:', error.message);
     throw error;
   }
 };

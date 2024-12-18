@@ -10,6 +10,7 @@ const Home = () => (
       <h1>Bem-vindo à Biblioteca da REGAP</h1>
       <p>Estamos com uma nova missão, a de compartilhar conhecimento e histórias com todos e para isso trazemos as estantes viajantes.</p>
       <Carousel />
+      <button onClick={handleLogout}>Sair</button>
     </div>
     <Footer />
   </div>

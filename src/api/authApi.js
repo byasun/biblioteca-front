@@ -6,6 +6,7 @@ const api = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
+  withCredentials: true,  // Necessário para cookies/sessões
 });
 
 export const login = async (credentials) => {
@@ -13,7 +14,16 @@ export const login = async (credentials) => {
     const response = await api.post('/usuarios/login', credentials);
     return response.data;
   } catch (error) {
-    throw new Error('Erro ao realizar login');
+    throw new Error(error.response?.data?.error || 'Erro ao realizar login');
+  }
+};
+
+export const logout = async () => {
+  try {
+    const response = await api.post('/usuarios/logout');
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response?.data?.error || 'Erro ao realizar logout');
   }
 };
 
@@ -22,6 +32,6 @@ export const register = async (userDetails) => {
     const response = await api.post('/usuarios/cadastrar', userDetails);
     return response.data;
   } catch (error) {
-    throw new Error('Erro ao realizar o cadastro');
+    throw new Error(error.response?.data?.error || 'Erro ao realizar o cadastro');
   }
 };
