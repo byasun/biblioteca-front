@@ -3,7 +3,7 @@ import api from '../../api';
 
 const initialState = {
   isAuthenticated: !!localStorage.getItem('token'),
-  user: null,
+  user: JSON.parse(localStorage.getItem('user')) || null,
   error: null,
 };
 
@@ -13,9 +13,10 @@ const usuarioSlice = createSlice({
   reducers: {
     loginSuccess: (state, action) => {
       state.isAuthenticated = true;
-      state.user = action.payload.user;  // Guarde o usuário
+      state.user = action.payload.user; // Armazena o usuário
       if (action.payload.token) {
-        localStorage.setItem('token', action.payload.token);  // Guarde o token
+        localStorage.setItem('token', action.payload.token); // Salva o token
+        localStorage.setItem('user', JSON.stringify(action.payload.user)); // Salva o usuário
       }
     },
     loginFailure: (state, action) => {
@@ -28,6 +29,7 @@ const usuarioSlice = createSlice({
       state.user = null;
       state.error = null;
       localStorage.removeItem('token');
+      localStorage.removeItem('user'); // Remove o usuário
     },
   },
 });
@@ -37,11 +39,11 @@ export const { loginSuccess, loginFailure, logoutSuccess } = usuarioSlice.action
 export const cadastrarUsuario = (dadosUsuario) => async (dispatch) => {
   try {
     const response = await api.post('/api/usuarios/cadastrar', dadosUsuario);
-    dispatch(cadastroSuccess(response.data));
+    dispatch(loginSuccess(response.data));
     return response.data;
   } catch (error) {
     console.error('Erro ao cadastrar o usuário:', error.response || error.message);
-    dispatch(cadastroError({
+    dispatch(loginFailure({
       message: error.response?.data?.message || 'Erro desconhecido',
       status: error.response?.status || 500,
     }));
@@ -51,20 +53,20 @@ export const cadastrarUsuario = (dadosUsuario) => async (dispatch) => {
 
 export const loginUsuario = (email, password) => async (dispatch) => {
   try {
-    const data = await login({ email, password }); // Aqui chamamos a API
-    console.log('Resposta do login:', data); // Verifique o que está sendo retornado
-    dispatch(loginSuccess(data)); // Armazena o usuário e o token no estado global
-    return data;
+    const response = await api.post('/api/usuarios/login', { email, password });
+    const { token, user } = response.data;
+    dispatch(loginSuccess({ token, user })); // Armazena no Redux
+    return response.data;
   } catch (error) {
-    console.error('Erro ao realizar login:', error.message);
-    dispatch(loginFailure(error.message));
+    console.error('Erro ao realizar login:', error.response || error.message);
+    dispatch(loginFailure(error.response?.data?.message || 'Erro ao realizar login.'));
     throw error;
   }
 };
 
 export const logout = () => async (dispatch) => {
   try {
-    await logout();
+    // Qualquer lógica adicional para logout no backend pode ser adicionada aqui
     dispatch(logoutSuccess());
   } catch (error) {
     console.error('Erro ao realizar logout:', error.message);

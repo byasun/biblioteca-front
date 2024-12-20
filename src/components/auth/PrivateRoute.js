@@ -6,11 +6,14 @@ import { ROUTES } from '../../routes/paths';
 const PrivateRoute = ({ children }) => {
   const { isAuthenticated } = useSelector((state) => state.usuario);
 
-  if (isAuthenticated === false) {
-    return <Navigate to={ROUTES.LOGIN} />;
+  if (isAuthenticated === undefined) {
+    return <div>Carregando...</div>;
   }
 
-  return isAuthenticated ? children : <div>Carregando...</div>;
+  if (!isAuthenticated) {
+    return <Navigate to={ROUTES.LOGIN} />;
+  }
+  return children;
 };
 
 export default PrivateRoute;
