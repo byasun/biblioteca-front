@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import { CadastroUsuario } from '../components/usuarios';  // Componentes para dashboard e cadastro de usuário
+import { CadastroUsuario } from '../components/usuarios';  
 
 const UsuarioRoutes = () => (
   <>
