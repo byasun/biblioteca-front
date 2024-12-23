@@ -9,19 +9,25 @@ import lupa from '../../components/imagens/lupa.png';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const isAuthenticated = useSelector((state) => state.usuario.isAuthenticated); // Verifica se está logado
+  const { isAuthenticated, user } = useSelector((state) => state.usuario);
 
   const navigate = useNavigate(); // Para navegação
   const dispatch = useDispatch(); // Para disparar ações do Redux
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+  const toggleMenu = () => setIsMenuOpen((prev) => !prev);
 
   const handleLogout = () => {
-    dispatch(logout()); // Dispara a ação de logout
-    navigate(ROUTES.LOGIN); // Redireciona para a página de login
-  };  
+    dispatch(logout());
+    navigate(ROUTES.LOGIN);
+    window.location.reload(); // Atualiza a página para garantir a limpeza do estado
+  };   
+
+  const handleMenuClick = (route) => {
+    setIsMenuOpen(false); // Fecha o menu
+    navigate(route);      // Navega para a rota
+  };
+
+  console.log("Navbar - Autenticação:", { isAuthenticated, user });
 
   return (
     <nav className="navbar">
@@ -42,22 +48,36 @@ const Navbar = () => {
         </button>
         <div className={`navbar-dropdown-menu ${isMenuOpen ? 'show' : ''}`}>
           {!isAuthenticated ? (
-            // Navbar para usuários não logados
             <>
-              <button className="primary-button" type="button" onClick={() => navigate(ROUTES.LOGIN)}>
+              <button
+                className="primary-button"
+                type="button"
+                onClick={() => handleMenuClick(ROUTES.LOGIN)}
+              >
                 Fazer Login
               </button>
-              <button className="primary-button" type="button" onClick={() => navigate(ROUTES.SIGNUP)}>
+              <button
+                className="primary-button"
+                type="button"
+                onClick={() => handleMenuClick(ROUTES.SIGNUP)}
+              >
                 Criar Conta
               </button>
-              <button className="primary-button" type="button" onClick={() => navigate('/sobre')}>
+              <button
+                className="primary-button"
+                type="button"
+                onClick={() => handleMenuClick('/sobre')}
+              >
                 Saiba Mais
               </button>
             </>
           ) : (
-            // Navbar para usuários logados
             <>
-              <button className="primary-button" type="button" onClick={() => navigate(ROUTES.DASHBOARD)}>
+              <button
+                className="primary-button"
+                type="button"
+                onClick={() => handleMenuClick(ROUTES.DASHBOARD)}
+              >
                 Estante
               </button>
               <button className="primary-button" type="button" onClick={handleLogout}>
