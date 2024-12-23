@@ -66,7 +66,6 @@ export const loginUsuario = (email, password) => async (dispatch) => {
 
 export const logout = () => async (dispatch) => {
   try {
-    // Qualquer lógica adicional para logout no backend pode ser adicionada aqui
     dispatch(logoutSuccess());
   } catch (error) {
     console.error('Erro ao realizar logout:', error.message);

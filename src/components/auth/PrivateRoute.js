@@ -4,15 +4,16 @@ import { useSelector } from "react-redux";
 import { ROUTES } from '../../routes/paths';
 
 const PrivateRoute = ({ children }) => {
-  const { isAuthenticated } = useSelector((state) => state.usuario);
-
-  if (isAuthenticated === undefined) {
-    return <div>Carregando...</div>;
-  }
+  const { isAuthenticated, user } = useSelector((state) => state.usuario);
 
   if (!isAuthenticated) {
     return <Navigate to={ROUTES.LOGIN} />;
   }
+
+  if (!user) {
+    return <div>Carregando...</div>;
+  }
+
   return children;
 };
 
