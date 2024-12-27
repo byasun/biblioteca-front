@@ -7,6 +7,8 @@ const initialState = {
   error: null,
 };
 
+console.log('Estado inicial:', initialState);
+
 const usuarioSlice = createSlice({
   name: 'usuario',
   initialState,
@@ -25,12 +27,13 @@ const usuarioSlice = createSlice({
       state.error = action.payload;
     },
     logoutSuccess: (state) => {
+      console.log('Usuário deslogado.');
       state.isAuthenticated = false;
       state.user = null;
       state.error = null;
       localStorage.removeItem('token');
-      localStorage.removeItem('user'); // Remove o usuário
-    },
+      localStorage.removeItem('user');
+    },    
   },
 });
 

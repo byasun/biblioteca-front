@@ -28,13 +28,15 @@ const Login = () => {
   
     try {
       const result = await dispatch(loginUsuario(email, password));
-      console.log('Usuário logado:', result); // Verifique os dados retornados
-      navigate(ROUTES.DASHBOARD); // Redireciona após o login bem-sucedido
+      console.log('Usuário logado:', result);
+      if (result) {
+        navigate(ROUTES.DASHBOARD);
+      }
     } catch (error) {
       console.error('Erro ao fazer login:', error.message || error.response?.data);
       setErrorMessage(error.message || 'Falha no login. Verifique suas credenciais.');
     }
-  };  
+  };    
 
   return (
     <div className="login-container">
